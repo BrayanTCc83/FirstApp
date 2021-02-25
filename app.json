@@ -1,0 +1,12 @@
+{
+  "name": "Notas",
+  "displayName": "Notas",
+  "expo": {
+    "name": "Notas",
+    "slug": "Notas",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
