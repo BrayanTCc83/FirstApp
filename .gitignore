@@ -1,2 +1,5 @@
 #Archivos que deben ser ignorados
 node_modules
+/android/build/*
+/android/app/build/*
+/android/.grandle/*
