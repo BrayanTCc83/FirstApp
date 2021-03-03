@@ -1,0 +1,16 @@
+{
+    "vars":{
+        "colors":{
+            "darkTheme":"#434343",
+            "lightTheme":"#FFFFFF",
+            "greenStyle":{
+                "main":"#1CCDAA",
+                "secondary":"#CDFFB6"
+            },
+            "redStyle":{
+                "main":"#FF6060",
+                "secondary":"#FFA6A6"
+            }
+        }
+    }
+}
