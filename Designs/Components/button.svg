@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="250mm"
+   height="200mm"
+   viewBox="0 0 250 200"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="button.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="4.8883237"
+     inkscape:cy="453.36366"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g858"
+       style="stroke-width:0.2;stroke-miterlimit:4;stroke-dasharray:none"
+       inkscape:export-xdpi="96.099998"
+       inkscape:export-ydpi="96.099998">
+      <rect
+         style="fill:#1ccdaa;fill-opacity:1;stroke:#1ccdaa;stroke-width:0.2;stroke-linejoin:round;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         id="rect849"
+         width="250"
+         height="49.795483"
+         x="5.6819221e-07"
+         y="5.6819221e-07"
+         ry="24.897741" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4025px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-miterlimit:4;stroke-dasharray:none"
+         x="93.566933"
+         y="34.798325"
+         id="text853"><tspan
+           sodipodi:role="line"
+           id="tspan851"
+           x="93.566933"
+           y="34.798325"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4025px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:0.2;stroke-miterlimit:4;stroke-dasharray:none">Button</tspan></text>
+    </g>
+    <g
+       id="g858-6"
+       transform="translate(0,49.795482)"
+       style="stroke-width:0.2;stroke-miterlimit:4;stroke-dasharray:none"
+       inkscape:export-xdpi="96.099998"
+       inkscape:export-ydpi="96.099998">
+      <rect
+         style="fill:none;fill-opacity:1;stroke:#1ccdaa;stroke-width:0.2;stroke-linejoin:round;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         id="rect849-0"
+         width="250"
+         height="49.795483"
+         x="5.6819221e-07"
+         y="5.6819221e-07"
+         ry="24.897741" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4025px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-miterlimit:4;stroke-dasharray:none"
+         x="93.566933"
+         y="34.798325"
+         id="text853-2"><tspan
+           sodipodi:role="line"
+           id="tspan851-5"
+           x="93.566933"
+           y="34.798325"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4025px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.2;stroke-miterlimit:4;stroke-dasharray:none">Button</tspan></text>
+    </g>
+    <g
+       id="g858-4"
+       transform="translate(0,99.590964)"
+       inkscape:export-xdpi="96.099998"
+       inkscape:export-ydpi="96.099998">
+      <rect
+         style="fill:#ff6060;fill-opacity:1;stroke:#ff6060;stroke-width:0.2;stroke-linejoin:round;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         id="rect849-8"
+         width="250"
+         height="49.795483"
+         x="5.6819221e-07"
+         y="5.6819221e-07"
+         ry="24.897741" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4025px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.635063"
+         x="93.566933"
+         y="34.798325"
+         id="text853-6"><tspan
+           sodipodi:role="line"
+           id="tspan851-7"
+           x="93.566933"
+           y="34.798325"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4025px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:0.635063">Button</tspan></text>
+    </g>
+    <g
+       id="g858-9"
+       transform="translate(0,149.38645)"
+       inkscape:export-xdpi="96.099998"
+       inkscape:export-ydpi="96.099998">
+      <rect
+         style="fill:#ffffff;fill-opacity:0;stroke:#ff6060;stroke-width:0.2;stroke-linejoin:round;stroke-opacity:0.87058824;stroke-miterlimit:4;stroke-dasharray:none"
+         id="rect849-7"
+         width="250"
+         height="49.795483"
+         x="5.6819221e-07"
+         y="5.6819221e-07"
+         ry="24.897741" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4025px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.635063;"
+         x="93.566933"
+         y="34.798325"
+         id="text853-8"><tspan
+           sodipodi:role="line"
+           id="tspan851-4"
+           x="93.566933"
+           y="34.798325"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4025px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke-width:0.635063;">Button</tspan></text>
+    </g>
+  </g>
+</svg>
