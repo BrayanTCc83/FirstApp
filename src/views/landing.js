@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-const Home = () =>{
+const Landing = () =>{
     return (
         <View>
-          <Text>Home</Text>
+          <Text>Landing</Text>
         </View>
     )
 };
-export default Home
+export default Landing
