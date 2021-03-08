@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="100mm"
+   height="200mm"
+   viewBox="0 0 100 200"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="switch.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="42.703006"
+     inkscape:cy="327.66628"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g1584">
+      <rect
+         style="fill:#cdffb6;fill-opacity:1;stroke:#1ccdaa;stroke-width:0.582357;stroke-linejoin:round;stroke-opacity:1"
+         id="rect1578"
+         width="99.417648"
+         height="49.417645"
+         x="0.29117876"
+         y="0.29117876"
+         ry="24.708822" />
+      <ellipse
+         style="fill:#1ccdaa;fill-opacity:1;stroke:#1ccdaa;stroke-width:0.347857;stroke-linejoin:round;stroke-opacity:1"
+         id="path1580"
+         cx="26.581738"
+         cy="24.978121"
+         rx="19.826073"
+         ry="19.826071" />
+    </g>
+    <g
+       id="g1584-6"
+       transform="translate(0,49.417645)">
+      <rect
+         style="fill:#434343;fill-opacity:1;stroke:#1ccdaa;stroke-width:0.582357;stroke-linejoin:round;stroke-opacity:1"
+         id="rect1578-7"
+         width="99.417648"
+         height="49.417645"
+         x="0.29117876"
+         y="0.29117876"
+         ry="24.708822" />
+      <ellipse
+         style="fill:#1ccdaa;fill-opacity:1;stroke:#1ccdaa;stroke-width:0.347857;stroke-linejoin:round;stroke-opacity:1"
+         id="path1580-0"
+         cx="26.581738"
+         cy="24.978121"
+         rx="19.826073"
+         ry="19.826071" />
+    </g>
+    <g
+       id="g1584-8"
+       transform="translate(0,98.83529)">
+      <rect
+         style="fill:#ffa6a6;fill-opacity:1;stroke:#ff6060;stroke-width:0.582357;stroke-linejoin:round;stroke-opacity:1"
+         id="rect1578-3"
+         width="99.417648"
+         height="49.417645"
+         x="0.29117876"
+         y="0.29117876"
+         ry="24.708822" />
+      <ellipse
+         style="fill:#ff6060;fill-opacity:1;stroke:#ff6060;stroke-width:0.347857;stroke-linejoin:round;stroke-opacity:1"
+         id="path1580-1"
+         cx="26.581738"
+         cy="24.978121"
+         rx="19.826073"
+         ry="19.826071" />
+    </g>
+    <g
+       id="g1584-2"
+       transform="translate(0,148.25294)">
+      <rect
+         style="fill:#434343;fill-opacity:1;stroke:#ff6060;stroke-width:0.582357;stroke-linejoin:round;stroke-opacity:1"
+         id="rect1578-0"
+         width="99.417648"
+         height="49.417645"
+         x="0.29117876"
+         y="0.29117876"
+         ry="24.708822" />
+      <ellipse
+         style="fill:#ff6060;fill-opacity:1;stroke:#ff6060;stroke-width:0.347857;stroke-linejoin:round;stroke-opacity:1"
+         id="path1580-7"
+         cx="26.581738"
+         cy="24.978121"
+         rx="19.826073"
+         ry="19.826071" />
+    </g>
+  </g>
+</svg>
