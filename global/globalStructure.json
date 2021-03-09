@@ -1,6 +1,6 @@
 {
-    "vars":{
-        "colors":{
+    "vars" : {
+        "colors" : {
             "darkTheme":"#434343",
             "lightTheme":"#FFFFFF",
             "greenStyle":{
@@ -11,6 +11,18 @@
                 "main":"#FF6060",
                 "secondary":"#FFA6A6"
             }
+        },
+        "fontSizes" : {
+            "first":30,
+            "second":27,
+            "common":23,
+            "info":20,
+            "detail":13
+        },
+        "fontColors" : {
+            "black":"#000000",
+            "white":"#ffffff",
+            "gray":"#dddddd"
         }
     }
 }
