@@ -10,9 +10,13 @@ export const AplicationProvider = (props) => {
         style:Variables.vars.colors.greenStyle
     });
 
-    const width=Dimensions.get('window').width
+    const fontColor = Variables.vars.fontColors
+
+    const width = Dimensions.get('window').width
     
-    const height=Dimensions.get('window').height
+    const height = Dimensions.get('window').height
+
+    const fontSizes = Variables.vars.fontSizes
 
     const modifyTheme = (newTheme) => {
         let prevTheme=appTheme
@@ -34,7 +38,9 @@ export const AplicationProvider = (props) => {
             appTheme,
             modifyTheme,
             width,
-            height
+            height,
+            fontSizes,
+            fontColor
         })
     }, [ appTheme, width, height ]);
 
