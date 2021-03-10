@@ -2,7 +2,10 @@
 import React from 'react'
 import { View, Text, StyleSheet, ProgressBarAndroidBase } from 'react-native'
 
-//ProgressBar
+//Global Views
+import ViewContainer from "../components/viewContainer"
+
+//Components import
 import { ProgressBar } from 'react-native-paper'
 import TextView from '../components/text'
 
@@ -10,18 +13,13 @@ import TextView from '../components/text'
 import { useAplicationContext } from "../provider"
 
 const Load = () =>{
-    const theme = useAplicationContext().appTheme.theme
+    //Read data from context provider
     const style = useAplicationContext().appTheme.style
     const width = useAplicationContext().width
     const height = useAplicationContext().height
     const fontColor = useAplicationContext().fontColor
-
+    //Styles definition
     const loadPageStyle = StyleSheet.create({
-      view : {
-        backgroundColor : theme,
-        width : width,
-        height : height,
-      },
       iconOutside : {
         top : height/6,
         left : width/4,
@@ -48,9 +46,9 @@ const Load = () =>{
         backgroundColor: fontColor.gray
       }
     })  
-
+    //Return component view
     return (
-        <View style={loadPageStyle.view} >
+        <ViewContainer>
           <View style={loadPageStyle.iconOutside} >
             <View style={loadPageStyle.iconInside} ></View>
           </View>
@@ -61,7 +59,7 @@ const Load = () =>{
             <TextView type={5} >Brayan Téllez Cruz</TextView>
             <TextView type={5} >Christian Roberto Gazpar Pérez</TextView>
           </View>
-        </View>
+        </ViewContainer>
     )
 };
 export default Load

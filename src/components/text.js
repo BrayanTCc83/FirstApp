@@ -7,37 +7,47 @@ const TextView = (props) => {
     const [align,setAlign]=useState(props.align?props.align:'center')
     const fonts = useAplicationContext().fontSizes
     const fontColor = useAplicationContext().fontColor
+    let defaultColor = props.color?props.color:fontColor.black
     const textStyles= StyleSheet.create({
         mainText : {
           marginVertical:50,
           fontSize : fonts.first,
           fontWeight : 'bold',
           textAlign : align,
-          color: fontColor.black
+          color: defaultColor,
+          marginHorizontal: props.margin?props.margin:0,
         },
         secondText : {
           fontSize : fonts.second,
           fontWeight : 'bold',
           textAlign : align,
-          color: fontColor.black
+          color: defaultColor,
+          marginVertical: props.vmargin?props.vmargin:0,
+          marginHorizontal: props.margin?props.margin:0,
         },
         commonText : {
           fontSize : fonts.common,
           fontWeight : 'bold',
           textAlign : align,
-          color: fontColor.black
+          color: defaultColor,
+          marginVertical: props.vmargin?props.vmargin:0,
+          marginHorizontal: props.margin?props.margin:0,
         },
         infoText : {
           fontSize : fonts.info,
           fontWeight : 'bold',
           textAlign : align,
-          color: fontColor.black
+          color: defaultColor,
+          marginVertical: props.vmargin?props.vmargin:0,
+          marginHorizontal: props.margin?props.margin:0,
         },
         detailText : {
           fontSize : fonts.detail,
           fontWeight : 'bold',
           textAlign : align,
-          color: fontColor.black
+          color: defaultColor,
+          marginVertical: props.vmargin?props.vmargin:0,
+          marginHorizontal: props.margin?props.margin:0,
         },
     })
     return(
