@@ -11,6 +11,7 @@ import TextView from '../components/text'
 
 //Provider
 import { useAplicationContext } from "../provider"
+import Icon from '../components/icon'
 
 const Load = () =>{
     //Read data from context provider
@@ -20,22 +21,6 @@ const Load = () =>{
     const fontColor = useAplicationContext().fontColor
     //Styles definition
     const loadPageStyle = StyleSheet.create({
-      iconOutside : {
-        top : height/6,
-        left : width/4,
-        backgroundColor : style.main,
-        width : width/2,
-        height : width/2,
-        borderRadius : width/4
-      },
-      iconInside : {
-        backgroundColor : style.secondary,
-        width : width/2.5,
-        height : width/2.5,
-        borderRadius : width/4,
-        top: width/20,
-        left: width/20
-      },
       textContainer:{
         width : width - width /4,
         left: width/8,
@@ -49,9 +34,7 @@ const Load = () =>{
     //Return component view
     return (
         <ViewContainer>
-          <View style={loadPageStyle.iconOutside} >
-            <View style={loadPageStyle.iconInside} ></View>
-          </View>
+          <Icon/>
           <View style={loadPageStyle.textContainer} >
             <TextView>NOMBRE DE LA APP</TextView>
             <ProgressBar progress={0.5} style={loadPageStyle.load} color={fontColor.black} >

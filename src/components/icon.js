@@ -28,25 +28,64 @@ const Icon = (props) => {
     const fontColor = useAplicationContext().fontColor
     //Styles
     const iconStyles = StyleSheet.create({
+        middleOutside : {
+            width : 65,
+            height : 65,
+            backgroundColor:style.secondary,
+            borderRadius : 35
+        },
         middle : {
             width : 50,
             height : 50,
-            color:'blue'
-        }
+            color:style.main,
+            top: 7.5,
+            left: 7.5
+        },
+        iconOutside : {
+          top : height/6,
+          left : width/4,
+          backgroundColor : style.main,
+          width : width/2,
+          height : width/2,
+          borderRadius : width/4
+        },
+        iconInside : {
+          backgroundColor : style.secondary,
+          width : width/2.5,
+          height : width/2.5,
+          borderRadius : width/4,
+          top: width/20,
+          left: width/20
+        },
     })
     //Return component view
     return(
         <Fragment>
-            <BellIcon style={iconStyles.middle}/>
-            <GoBackIcon style={iconStyles.middle}/>
-            <MessageIcon style={iconStyles.middle}/>
-            <FeatherIcon style={iconStyles.middle}/>
-            <ImageIcon style={iconStyles.middle}/>
-            <UserCircleIcon style={iconStyles.middle}/>
-            <UserLockIcon style={iconStyles.middle}/>
-            <ToolsIcon style={iconStyles.middle}/>
-            <ConfigIcon style={iconStyles.middle}/>
-            <DropDownIcon style={iconStyles.middle}/>
+            <View style={props.icon?iconStyles.middleOutside:iconStyles.iconOutside} >
+                {
+                    props.icon==='bell'?
+                        <BellIcon style={iconStyles.middle}/>:
+                    props.icon==='goback'?
+                        <GoBackIcon style={iconStyles.middle}/>:
+                    props.icon==='message'?
+                        <MessageIcon style={iconStyles.middle}/>:
+                    props.icon==='feather'?
+                        <FeatherIcon style={iconStyles.middle}/>:
+                    props.icon==='image'?
+                        <ImageIcon style={iconStyles.middle}/>:
+                    props.icon==='user'?
+                        <UserCircleIcon style={iconStyles.middle}/>:
+                    props.icon==='lock'?
+                        <UserLockIcon style={iconStyles.middle}/>:
+                    props.icon==='tools'?
+                        <ToolsIcon style={iconStyles.middle}/>:
+                    props.icon==='config'?
+                        <ConfigIcon style={iconStyles.middle}/>:
+                    props.icon==='dropdown'?
+                        <DropDownIcon style={iconStyles.middle}/>:
+                        <View style={iconStyles.iconInside} />
+                }
+            </View>
         </Fragment>
     )
 }

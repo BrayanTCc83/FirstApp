@@ -39,7 +39,7 @@ const Button = (props) => {
     })
     return (
         <Fragment>
-            <TouchableHighlight style={
+            <TouchableHighlight onPress={props.onPress?props.onPress:null} style={
                     props.type===2?
                         buttonStyle.buttonType2:
                     buttonStyle.buttonType1
