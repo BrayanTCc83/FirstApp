@@ -16,6 +16,7 @@ const TextView = (props) => {
           textAlign : align,
           color: defaultColor,
           marginHorizontal: props.margin?props.margin:0,
+          ...props.style
         },
         secondText : {
           fontSize : fonts.second,
@@ -24,6 +25,7 @@ const TextView = (props) => {
           color: defaultColor,
           marginVertical: props.vmargin?props.vmargin:0,
           marginHorizontal: props.margin?props.margin:0,
+          ...props.style
         },
         commonText : {
           fontSize : fonts.common,
@@ -32,6 +34,7 @@ const TextView = (props) => {
           color: defaultColor,
           marginVertical: props.vmargin?props.vmargin:0,
           marginHorizontal: props.margin?props.margin:0,
+          ...props.style
         },
         infoText : {
           fontSize : fonts.info,
@@ -40,6 +43,7 @@ const TextView = (props) => {
           color: defaultColor,
           marginVertical: props.vmargin?props.vmargin:0,
           marginHorizontal: props.margin?props.margin:0,
+          ...props.style
         },
         detailText : {
           fontSize : fonts.detail,
@@ -48,6 +52,7 @@ const TextView = (props) => {
           color: defaultColor,
           marginVertical: props.vmargin?props.vmargin:0,
           marginHorizontal: props.margin?props.margin:0,
+          ...props.style
         },
     })
     return(

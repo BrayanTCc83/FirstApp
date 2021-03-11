@@ -22,10 +22,11 @@ const ViewContainer = (props) =>{
     //Return component view
     return (
         <Fragment>
-            <ScrollView scrollEnabled={props.scroll?props.scroll:false} >
-                <View style={globalViews.view} >
-                    {props.children}
-                </View>
+            <ScrollView 
+                scrollEnabled={props.scroll?props.scroll:false} 
+                style={globalViews.view}
+            >
+                {props.children}
             </ScrollView>
         </Fragment>
     )
