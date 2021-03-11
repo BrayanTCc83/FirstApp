@@ -1,6 +1,6 @@
 //React import
-import React, { Fragment } from 'react'
-import { useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
+import { swi } from 'react-native'
 
 //React native import
 import { TouchableHighlight, StyleSheet, View } from 'react-native'
@@ -13,14 +13,15 @@ import TextView from './text'
 
 //Component definition
 const SwitchButton = (props) => {
-    //State
-    const [currentValue, setCurrentValue] = useState(props.val1)
     //Read data from context provider
-    const style = useAplicationContext().appTheme.style
-    const width = useAplicationContext().width
+    const { width, theme, strTheme, mainColor, secondaryColor } = useAplicationContext()
+    //State
+    const [currentValue, setCurrentValue] = useState(false)
     //Modify value
-    const modifyCurrentValue=()=>{
-        setCurrentValue(currentValue === props.val1 ? props.val2 : props.val1)
+    const toggleCurrentValue = () => {
+        const newCurrentValue=!currentValue 
+        setCurrentValue(newCurrentValue)
+        props.onPress?props.onPress(newCurrentValue?props.value[1]:props.value[0]):()=>null
     }
     //Styles definition
     const globalSwitch = StyleSheet.create({
@@ -28,11 +29,12 @@ const SwitchButton = (props) => {
             width : 100,
             height : 50,
             borderRadius : 50,
-            borderColor : style.main,
-            borderWidth : 1
+            borderColor : mainColor,
+            borderWidth : 1,
+            backgroundColor : strTheme==='light'?secondaryColor:theme
         },
         circle : {
-            backgroundColor : style.main,
+            backgroundColor : mainColor,
             width: 40,
             height: 40,
             borderRadius:20
@@ -53,7 +55,6 @@ const SwitchButton = (props) => {
         },
         forVal1 : {
             ...globalSwitch.global,
-            backgroundColor : style.secondary
         },
         val1 : {
             ...globalSwitch.circle,
@@ -70,13 +71,25 @@ const SwitchButton = (props) => {
     return (
         <Fragment>
             <View style={switchStyles.container} >
-                <TouchableHighlight onPress={modifyCurrentValue} style={switchStyles.forVal1} >
+                <TouchableHighlight onPress={toggleCurrentValue} style={switchStyles.forVal1} >
                     <View style={
-                            currentValue===props.val1?switchStyles.val1:switchStyles.val2
+                            currentValue?switchStyles.val2:switchStyles.val1
                         } 
                     />
                 </TouchableHighlight>
-                <TextView style={switchStyles.text}  type={4}>{props.children} : {currentValue}</TextView>
+                <TextView style={switchStyles.text}  type={4}>
+                    {props.children?props.children+":":null}
+                    {
+                        props.labels?
+                            currentValue?
+                                props.labels[1]:
+                                props.labels[0]
+                        :
+                            currentValue?
+                                props.values[1]:
+                                props.values[0]
+                    }
+                </TextView>
             </View>
         </Fragment>
     )

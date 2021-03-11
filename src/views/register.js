@@ -17,7 +17,7 @@ const Register = () =>{
           <Input>Correo</Input>
           <Input>Contraseña</Input>
           <Input>Repetir contraseña</Input>
-          <SwitchButton val1='Mujer' val2='Hombre' >Sexo</SwitchButton>
+          <SwitchButton values={["f","m"]} labels={["Mujer","Hombre"]} >Sexo</SwitchButton>
           <Button>Crear cuenta</Button>
         </ViewContainer>
     )

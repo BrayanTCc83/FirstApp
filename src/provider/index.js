@@ -1,16 +1,40 @@
-import React, { createContext, useContext, useMemo, useState } from 'react';
+import React, { createContext, useContext, useMemo, useState } from 'react'
 import { Dimensions } from 'react-native'
 import Variables from "../../global/globalStructure.json"
 
-const AplicationContext = createContext();
+export const AplicationContext = createContext()
 
 export const AplicationProvider = (props) => {
-    const [appTheme, setAppTheme] = useState({
-        theme:Variables.vars.colors.lightTheme, 
-        style:Variables.vars.colors.greenStyle
-    });
+    const [theme, setTheme] = useState(Variables.vars.colors.lightTheme)
+    const [strTheme, setStrTheme] = useState('light')
+    const [mainColor, setMainColor] = useState(Variables.vars.colors.greenStyle.main)
+    const [secondaryColor, setSecondaryColor] = useState(Variables.vars.colors.greenStyle.secondary)
+    const [fontColor, setFontColor] = useState(Variables.vars.fontColors.black)
+    const grayFontColor= Variables.vars.fontColors.gray
+    const whiteColor = Variables.vars.fontColors.white
 
-    const fontColor = Variables.vars.fontColors
+    const changeTheme = (newTheme) => {
+        setStrTheme(newTheme)
+        setTheme(newTheme==='light'?
+            Variables.vars.colors.lightTheme:
+            Variables.vars.colors.darkTheme
+        )
+        setFontColor(newTheme==='light'?
+            Variables.vars.fontColors.black:
+            Variables.vars.fontColors.white
+        )
+    }
+
+    const changeSchemaColor = (newSchema) => {
+        setMainColor(newSchema==='green'?
+            Variables.vars.colors.greenStyle.main:
+            Variables.vars.colors.redStyle.main
+        )
+        setSecondaryColor(newSchema==='green'?
+            Variables.vars.colors.greenStyle.secondary:
+            Variables.vars.colors.redStyle.secondary
+        )
+    }
 
     const width = Dimensions.get('window').width
     
@@ -18,32 +42,22 @@ export const AplicationProvider = (props) => {
 
     const fontSizes = Variables.vars.fontSizes
 
-    const modifyTheme = (newTheme) => {
-        let prevTheme=appTheme
-        if(newTheme.theme==="light"){
-            prevTheme.theme=Variables.vars.colors.lightTheme
-        }else{
-            prevTheme.theme=Variables.vars.colors.darkTheme
-        }
-        if(newTheme.style==="green"){
-            prevTheme.theme=Variables.vars.colors.greenStyle
-        }else{
-            prevTheme.theme=Variables.vars.colors.redStyle
-        }
-        setAppTheme(prevTheme)
-    };
-
     const value = useMemo(() => {
         return ({
-            appTheme,
-            modifyTheme,
+            theme,
+            mainColor,
+            secondaryColor,
+            strTheme,
+            changeTheme,
+            changeSchemaColor,
             width,
             height,
             fontSizes,
-            fontColor
+            fontColor,
+            grayFontColor,
+            whiteColor
         })
-    }, [ appTheme, width, height ]);
-
+    }, [ theme, width, height, secondaryColor ]);
     return <AplicationContext.Provider value={value} {...props} />
 };
 

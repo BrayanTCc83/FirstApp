@@ -16,21 +16,18 @@ const Input = (props) => {
     //State
     const [inputValue,setValue]=useState('')
     //Read data from Context Provider
-    const style = useAplicationContext().appTheme.style
-    const width = useAplicationContext().width
-    const fonts = useAplicationContext().fontSizes
-    const fontColor = useAplicationContext().fontColor
+    const { mainColor, secondaryColkor, width, fontSizes } = useAplicationContext()
     //Style definition
     const inputStyle = StyleSheet.create({
         input : {
             backgroundColor: 'transparent',
-            borderColor : style.main,
+            borderColor : mainColor,
             borderWidth : 1,
             borderRadius: 15,
             maxWidth: width - width/5 ,
             left: width/10,
             zIndex : 2,
-            fontSize : fonts.info,
+            fontSize : fontSizes.info,
             fontWeight : 'bold',
             paddingHorizontal: 15,
             marginVertical : 10

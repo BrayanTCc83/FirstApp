@@ -22,35 +22,33 @@ import ConfigIcon from "../../assets/icons/cog-solid.svg"
 //Component definition
 const Icon = (props) => {
     //Read data from provider
-    const style = useAplicationContext().appTheme.style
-    const width = useAplicationContext().width
-    const height = useAplicationContext().height
-    const fontColor = useAplicationContext().fontColor
+    const { mainColor, secondaryColor, width, height } = useAplicationContext()
     //Styles
     const iconStyles = StyleSheet.create({
         middleOutside : {
             width : 65,
             height : 65,
-            backgroundColor:style.secondary,
+            backgroundColor:secondaryColor,
             borderRadius : 35
         },
         middle : {
             width : 50,
             height : 50,
-            color:style.main,
+            color:mainColor,
             top: 7.5,
             left: 7.5
         },
         iconOutside : {
           top : height/6,
           left : width/4,
-          backgroundColor : style.main,
+          backgroundColor : mainColor,
           width : width/2,
           height : width/2,
-          borderRadius : width/4
+          borderRadius : width/4,
+          ...props.style
         },
         iconInside : {
-          backgroundColor : style.secondary,
+          backgroundColor : secondaryColor,
           width : width/2.5,
           height : width/2.5,
           borderRadius : width/4,
