@@ -24,7 +24,7 @@ const Button = (props) => {
             borderWidth: 1
         },
         buttonType2 : {
-            backgroundColor : whiteColor,
+            backgroundColor : 'transparent',
             maxWidth: width - width/5 ,
             borderRadius : width/5,
             padding: 12,

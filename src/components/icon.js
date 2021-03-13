@@ -2,7 +2,7 @@
 import React, { Fragment } from 'react'
 
 //Import react native
-import { View, Image, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, StyleSheet } from 'react-native'
 
 //Provider
 import { useAplicationContext } from "../provider"
@@ -26,17 +26,28 @@ const Icon = (props) => {
     //Styles
     const iconStyles = StyleSheet.create({
         middleOutside : {
-            width : 65,
-            height : 65,
+            width : 70,
+            height : 70,
             backgroundColor:secondaryColor,
-            borderRadius : 35
+            borderRadius : 35,
+            borderColor: mainColor,
+            borderWidth : 1,
+            ...props.style
         },
         middle : {
             width : 50,
             height : 50,
             color:mainColor,
-            top: 7.5,
-            left: 7.5
+            top: 8,
+            left: 8
+        },
+        full : {
+            width : 70,
+            height : 70,
+            color:mainColor,
+            top: -1,
+            left: -1,
+            ...props.styleInside
         },
         iconOutside : {
           top : height/6,
@@ -45,7 +56,13 @@ const Icon = (props) => {
           width : width/2,
           height : width/2,
           borderRadius : width/4,
-          ...props.style
+          ...props.style    
+        },
+        void : {
+            width : 70,
+            height : 70,
+            backgroundColor : 'transparent',
+            ...props.style
         },
         iconInside : {
           backgroundColor : secondaryColor,
@@ -56,32 +73,46 @@ const Icon = (props) => {
           left: width/20
         },
     })
+    const ChooseIcon = () =>{
+        return props.icon==='bell'?
+                    <BellIcon style={iconStyles.middle}/>:
+                props.icon==='goback'?
+                    <GoBackIcon style={iconStyles.middle}/>:
+                props.icon==='message'?
+                    <MessageIcon style={iconStyles.middle}/>:
+                props.icon==='feather'?
+                    <FeatherIcon style={iconStyles.middle}/>:
+                props.icon==='image'?
+                    <ImageIcon style={iconStyles.middle}/>:
+                props.icon==='user'?
+                    <UserCircleIcon style={iconStyles.full}/>:
+                props.icon==='lock'?
+                    <UserLockIcon style={iconStyles.middle}/>:
+                props.icon==='tools'?
+                    <ToolsIcon style={iconStyles.middle}/>:
+                props.icon==='config'?
+                    <ConfigIcon style={iconStyles.middle}/>:
+                props.icon==='dropdown'?
+                    <DropDownIcon style={iconStyles.middle}/>:
+                    <View style={iconStyles.iconInside} />
+    }
     //Return component view
     return(
         <Fragment>
-            <View style={props.icon?iconStyles.middleOutside:iconStyles.iconOutside} >
+            <View style={
+                props.icon?
+                    props.void?
+                        iconStyles.void
+                        :iconStyles.middleOutside
+                    :iconStyles.iconOutside
+            } >
                 {
-                    props.icon==='bell'?
-                        <BellIcon style={iconStyles.middle}/>:
-                    props.icon==='goback'?
-                        <GoBackIcon style={iconStyles.middle}/>:
-                    props.icon==='message'?
-                        <MessageIcon style={iconStyles.middle}/>:
-                    props.icon==='feather'?
-                        <FeatherIcon style={iconStyles.middle}/>:
-                    props.icon==='image'?
-                        <ImageIcon style={iconStyles.middle}/>:
-                    props.icon==='user'?
-                        <UserCircleIcon style={iconStyles.middle}/>:
-                    props.icon==='lock'?
-                        <UserLockIcon style={iconStyles.middle}/>:
-                    props.icon==='tools'?
-                        <ToolsIcon style={iconStyles.middle}/>:
-                    props.icon==='config'?
-                        <ConfigIcon style={iconStyles.middle}/>:
-                    props.icon==='dropdown'?
-                        <DropDownIcon style={iconStyles.middle}/>:
-                        <View style={iconStyles.iconInside} />
+                    props.onPress?
+                        <TouchableOpacity onPress={props.onPress} >
+                            <ChooseIcon/>
+                        </TouchableOpacity>
+                        :
+                        <ChooseIcon/>
                 }
             </View>
         </Fragment>
