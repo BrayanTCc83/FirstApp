@@ -10,12 +10,12 @@ import { ProgressBar } from 'react-native-paper'
 import TextView from '../components/text'
 
 //Provider
-import { useAplicationContext } from "../provider"
+import { useDesignContext } from "../provider/designProvider"
 import Icon from '../components/icon'
 
 const Load = () =>{
     //Read data from context provider
-    const { width, height, grayFontColor, fontColor } = useAplicationContext()
+    const { width, height, grayFontColor, fontColor } = useDesignContext()
     //Styles definition
     const loadPageStyle = StyleSheet.create({
       textContainer:{

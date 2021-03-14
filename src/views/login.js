@@ -5,7 +5,7 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 
 //Provider
-import { useAplicationContext } from "../provider"
+import { useDesignContext } from "../provider/designProvider"
 
 //Components import
 import ViewContainer from "../components/viewContainer"
@@ -14,7 +14,7 @@ import Input from '../components/input'
 import Button from '../components/button'
 import Icon from '../components/icon'
 const Login = () =>{
-  const { height } = useAplicationContext()
+  const { height } = useDesignContext()
   const loginStyles = StyleSheet.create({
     container : {
       height: height/1.5,

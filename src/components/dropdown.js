@@ -5,13 +5,18 @@ import { useState } from 'react'
 //React native import 
 import { StyleSheet, TouchableWithoutFeedback, ScrollView, View } from 'react-native'
 
-import { useAplicationContext } from "../provider/index"
+//Providers
+import { useDesignContext } from "../provider/designProvider"
 
+//Components
 import TextView from '../components/text'
 import Icon from '../components/icon'
 
+//Definitions
+import { ICONS_DEFINITIONS } from "../../global/definitions"
+
 const Dropdown = (props) =>{
-    const {secondaryColor, theme, strTheme, mainColor, width } = useAplicationContext()
+    const { mainColor, width } = useDesignContext()
     const [ expanded, setExpanded ] = useState(false)
     //Style definition
     const dropdownStyle = StyleSheet.create({
@@ -58,15 +63,22 @@ const Dropdown = (props) =>{
         <View style={dropdownStyle.container} >
             <TouchableWithoutFeedback onPress={()=>setExpanded(!expanded)}  >
                 <View style={dropdownStyle.head}>
-                    <Icon icon={props.icon} style={dropdownStyle.icon} />
+                    <Icon 
+                        icon = { props.icon } 
+                        style = { dropdownStyle.icon } 
+                    />
                     <TextView type={4} style={dropdownStyle.headText} >
-                        {props.text}
+                        { props.text }
                     </TextView>
-                    <Icon icon='dropdown' style={dropdownStyle.dropdown} void/>
+                    <Icon 
+                        icon = { ICONS_DEFINITIONS.DROPDOWN_ICON }
+                        style = { dropdownStyle.dropdown } 
+                        void
+                    />
                 </View>
             </TouchableWithoutFeedback>
             <ScrollView style={ expanded? dropdownStyle.content :dropdownStyle.contentHidden } >
-                {props.children}
+                { props.children }
             </ScrollView>
         </View>
     )

@@ -6,7 +6,7 @@ import { swi } from 'react-native'
 import { TouchableHighlight, StyleSheet, View } from 'react-native'
 
 //Provider
-import { useAplicationContext } from "../provider"
+import { useDesignContext } from "../provider/designProvider"
 
 //Components import
 import TextView from './text'
@@ -14,7 +14,7 @@ import TextView from './text'
 //Component definition
 const SwitchButton = (props) => {
     //Read data from context provider
-    const { width, theme, strTheme, mainColor, secondaryColor } = useAplicationContext()
+    const { width, theme, strTheme, mainColor, secondaryColor } = useDesignContext()
     //State
     const [currentValue, setCurrentValue] = useState(false)
     //Modify value

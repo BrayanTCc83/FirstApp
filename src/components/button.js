@@ -5,13 +5,13 @@ import React, { Fragment } from 'react'
 import { TouchableHighlight, StyleSheet } from 'react-native'
 
 //Provider
-import { useAplicationContext } from "../provider"
+import { useDesignContext } from "../provider/designProvider"
 
 //Components import
 import TextView from './text'
 
 const Button = (props) => {
-    const { mainColor, whiteColor, width } = useAplicationContext()
+    const { mainColor, whiteColor, width } = useDesignContext()
     const buttonStyle = StyleSheet.create({
         buttonType1 : {
             backgroundColor : mainColor,

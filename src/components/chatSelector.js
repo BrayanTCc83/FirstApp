@@ -3,14 +3,17 @@ import React from 'react'
 import { View, TouchableWithoutFeedback, StyleSheet } from 'react-native'
 
 //Provider
-import { useAplicationContext } from "../provider/index"
+import { useDesignContext } from "../provider/designProvider"
 
 //Components
 import Icon from "./icon"
 import TextView from './text'
 
+//Definitions
+import { ICONS_DEFINITIONS } from "../../global/definitions"
+
 const ChatSelector = (props) => {
-    const { width, height, mainColor } = useAplicationContext()
+    const { width, height, mainColor } = useDesignContext()
     const currentTime = new Date().getHours()+6 +' : '+ new Date().getMinutes()
     const chatSelector = StyleSheet.create({
       container : {
@@ -42,22 +45,28 @@ const ChatSelector = (props) => {
         <View style={chatSelector.container} >
           {
             props.userIcon ? 
-              <Icon icon='bell' onPress={()=>alert('mostrando imagen')} />
+              <Icon 
+                icon = { ICONS_DEFINITIONS.BELL_ICON } 
+                onPress = { ()=>alert('mostrando imagen') } 
+              />
             :
-              <Icon icon='user' onPress={()=>alert('mostrando imagen')} />
+              <Icon 
+                icon = { ICONS_DEFINITIONS.USER_ICON }
+                onPress={ ()=>alert('mostrando imagen') } 
+              />
           }
           <TouchableWithoutFeedback onPress={()=>alert('abriendo chat')}  >
             <View style={chatSelector.chatViewInfo}>
                 <View style={chatSelector.chatInfo} >
                 <TextView type={4} align='left' >
-                    {props.contact?props.contact:'Contact'} 
-                    {' - '}
-                    {props.time?props.time:currentTime}
+                    { props.contact ? props.contact : 'Contact' } 
+                    { ' - ' }
+                    { props.time ? props.time:currentTime }
                 </TextView>
                 </View>
-                <View style={chatSelector.chatContentPreview} >
+                <View style={ chatSelector.chatContentPreview } >
                 <TextView type={4} align='left' thin >
-                    {props.preview?props.preview:'Content preview'}
+                    { props.preview ? props.preview : 'Content preview' }
                 </TextView>
                 </View>
             </View>

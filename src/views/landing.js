@@ -13,10 +13,10 @@ import Button from "../components/button"
 import Icon from '../components/icon'
 
 //Provider
-import { useAplicationContext } from "../provider"
+import { useDesignContext } from "../provider/designProvider"
 
 const Landing = () =>{
-  const { height } = useAplicationContext()
+  const { height } = useDesignContext()
   const loadPageStyle = StyleSheet.create({
     textContainer:{
       top: height/5,

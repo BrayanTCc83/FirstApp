@@ -8,7 +8,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 //Providers
-import { AplicationProvider, useAplicationContext } from "./src/provider"
+import { DesignProvider } from "./src/provider/designProvider"
 
 //Views
 import Load from "./src/views/load"
@@ -26,7 +26,7 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <AplicationProvider>
+    <DesignProvider>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
@@ -76,6 +76,6 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-    </AplicationProvider>
+    </DesignProvider>
   );
 }

@@ -5,7 +5,7 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 //Provider
-import { useAplicationContext } from "../provider/index"
+import { useDesignContext } from "../provider/designProvider"
 
 //Components
 import ViewContainer from "../components/viewContainer"
@@ -13,9 +13,12 @@ import Icon from "../components/icon"
 import Input from "../components/input"
 import ChatSelector from '../components/chatSelector'
 
+//Definitions
+import { ICONS_DEFINITIONS } from '../../global/definitions'
+
 const ChatsSelectorView = () => {
     //Read data from provider
-    const { width, height, mainColor } = useAplicationContext()
+    const { width, height, mainColor } = useDesignContext()
     //Styles definition
     const chatsSelectorViewStyles = StyleSheet.create({
       header : {
@@ -37,7 +40,11 @@ const ChatsSelectorView = () => {
     return (
         <ViewContainer>
           <View style={chatsSelectorViewStyles.header} >
-            <Icon icon='goback' void  onPress={()=>alert('pressed')} />
+            <Icon 
+              icon = { ICONS_DEFINITIONS.GO_BACK_ICON }
+              onPress = { () => alert('pressed') } 
+              void  
+            />
             <Input style={chatsSelectorViewStyles.searchInput} >Buscar</Input>
           </View>
           <ViewContainer scroll style={chatsSelectorViewStyles.chatsContainer} >

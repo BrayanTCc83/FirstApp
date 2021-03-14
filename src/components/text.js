@@ -2,11 +2,11 @@
 import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 //Provider
-import { useAplicationContext } from "../provider"
+import { useDesignContext } from "../provider/designProvider"
 const TextView = (props) => {
     const thin = props.thin? 'normal': 'bold'
     const align = props.align?props.align:'center'
-    const { fontSizes, fontColor } = useAplicationContext()
+    const { fontSizes, fontColor } = useDesignContext()
     //Styles definition
     const globalTextStyles = StyleSheet.create({
       text : {

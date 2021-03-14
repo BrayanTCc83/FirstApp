@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { TextInput, StyleSheet } from 'react-native'
 
 //Provider
-import { useAplicationContext } from "../provider"
+import { useDesignContext } from "../provider/designProvider"
 
 //Components import
 import TextView from './text'
@@ -16,7 +16,7 @@ const Input = (props) => {
     //State
     const [inputValue,setValue]=useState('')
     //Read data from Context Provider
-    const { mainColor, secondaryColkor, width, fontSizes } = useAplicationContext()
+    const { mainColor, secondaryColkor, width, fontSizes } = useDesignContext()
     //Style definition
     const inputStyle = StyleSheet.create({
         input : {

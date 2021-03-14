@@ -3,12 +3,12 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { StyleSheet, View, ScrollView } from 'react-native'
 
 //Context Provider
-import {useAplicationContext} from "../provider"
+import { useDesignContext } from "../provider/designProvider"
 
 //Global Styles definition
 const ViewContainer = (props) =>{
     //Read data from context
-    const { width, height, theme } = useAplicationContext()
+    const { width, height, theme } = useDesignContext()
     //Styles definition
     const globalViews = StyleSheet.create({
         view : {
