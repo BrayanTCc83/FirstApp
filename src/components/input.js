@@ -30,7 +30,8 @@ const Input = (props) => {
             fontSize : fontSizes.info,
             fontWeight : 'bold',
             paddingHorizontal: 15,
-            marginVertical : 10
+            marginVertical : 10,
+            ...props.style
         }
     })
     return (

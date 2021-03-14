@@ -15,6 +15,7 @@ const ViewContainer = (props) =>{
             backgroundColor : theme,
             width : width,
             height : height,
+            ...props.style
         }
     })
     //Return component view

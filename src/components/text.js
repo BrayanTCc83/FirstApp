@@ -1,15 +1,16 @@
 //React
-import React, { useState } from 'react'
+import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 //Provider
 import { useAplicationContext } from "../provider"
 const TextView = (props) => {
-    const [align,setAlign]=useState(props.align?props.align:'center')
+    const thin = props.thin? 'normal': 'bold'
+    const align = props.align?props.align:'center'
     const { fontSizes, fontColor } = useAplicationContext()
     //Styles definition
     const globalTextStyles = StyleSheet.create({
       text : {
-        fontWeight : 'bold',
+        fontWeight : thin,
         textAlign : align,
         color: props.color?props.color:fontColor,
         marginHorizontal: props.margin?props.margin:0,
