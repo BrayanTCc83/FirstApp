@@ -1,22 +1,21 @@
 //React import
-import React, { Fragment } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { StyleSheet, View, ScrollView } from 'react-native'
 
 //Context Provider
-import {useAplicationContext} from "../provider"
+import { useDesignContext } from "../provider/designProvider"
 
 //Global Styles definition
 const ViewContainer = (props) =>{
     //Read data from context
-    const width = useAplicationContext().width
-    const height = useAplicationContext().height
-    const theme = useAplicationContext().appTheme.theme
+    const { width, height, theme } = useDesignContext()
     //Styles definition
     const globalViews = StyleSheet.create({
         view : {
             backgroundColor : theme,
             width : width,
             height : height,
+            ...props.style
         }
     })
     //Return component view

@@ -8,7 +8,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 //Providers
-import { AplicationProvider, useAplicationContext } from "./src/provider"
+import { DesignProvider } from "./src/provider/designProvider"
 
 //Views
 import Load from "./src/views/load"
@@ -18,7 +18,7 @@ import Login from "./src/views/login"
 import Home from "./src/views/home"
 import Post from "./src/views/post"
 import Configuration from "./src/views/configuration"
-import ChatList from "./src/views/chatList"
+import ChatsSelectorView from "./src/views/chatList"
 import Chat from "./src/views/chat"
 import UserProfile from "./src/views/userProfile"
 
@@ -26,13 +26,13 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <AplicationProvider>
+    <DesignProvider>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
             headerShown:false
           }}
-          initialRouteName="Load"
+          initialRouteName="Home"
         >
           <Stack.Screen 
             name="Load"
@@ -63,8 +63,8 @@ export default function App() {
             component={Configuration}
           />
           <Stack.Screen
-            name="ChatList"
-            component={ChatList}
+            name="ChatsSelectorView"
+            component={ChatsSelectorView}
           />
           <Stack.Screen
             name="Chat"
@@ -76,6 +76,6 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-    </AplicationProvider>
+    </DesignProvider>
   );
 }

@@ -1,57 +1,46 @@
 //React
-import React, { useState } from 'react'
+import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 //Provider
-import { useAplicationContext } from "../provider"
+import { useDesignContext } from "../provider/designProvider"
 const TextView = (props) => {
-    const [align,setAlign]=useState(props.align?props.align:'center')
-    const fonts = useAplicationContext().fontSizes
-    const fontColor = useAplicationContext().fontColor
-    let defaultColor = props.color?props.color:fontColor.black
+    const thin = props.thin? 'normal': 'bold'
+    const align = props.align?props.align:'center'
+    const { fontSizes, fontColor } = useDesignContext()
+    //Styles definition
+    const globalTextStyles = StyleSheet.create({
+      text : {
+        fontWeight : thin,
+        textAlign : align,
+        color: props.color?props.color:fontColor,
+        marginHorizontal: props.margin?props.margin:0,
+      }
+    })
     const textStyles= StyleSheet.create({
         mainText : {
           marginVertical:50,
-          fontSize : fonts.first,
-          fontWeight : 'bold',
-          textAlign : align,
-          color: defaultColor,
-          marginHorizontal: props.margin?props.margin:0,
+          fontSize : fontSizes.first,
+          ...globalTextStyles.text,
           ...props.style
         },
         secondText : {
-          fontSize : fonts.second,
-          fontWeight : 'bold',
-          textAlign : align,
-          color: defaultColor,
-          marginVertical: props.vmargin?props.vmargin:0,
-          marginHorizontal: props.margin?props.margin:0,
+          fontSize : fontSizes.second,
+          ...globalTextStyles.text,
           ...props.style
         },
         commonText : {
-          fontSize : fonts.common,
-          fontWeight : 'bold',
-          textAlign : align,
-          color: defaultColor,
-          marginVertical: props.vmargin?props.vmargin:0,
-          marginHorizontal: props.margin?props.margin:0,
+          fontSize : fontSizes.common,
+          ...globalTextStyles.text,
           ...props.style
         },
         infoText : {
-          fontSize : fonts.info,
-          fontWeight : 'bold',
-          textAlign : align,
-          color: defaultColor,
-          marginVertical: props.vmargin?props.vmargin:0,
-          marginHorizontal: props.margin?props.margin:0,
+          fontSize : fontSizes.info,
+          ...globalTextStyles.text,
           ...props.style
         },
         detailText : {
-          fontSize : fonts.detail,
-          fontWeight : 'bold',
-          textAlign : align,
-          color: defaultColor,
-          marginVertical: props.vmargin?props.vmargin:0,
-          marginHorizontal: props.margin?props.margin:0,
+          fontSize : fontSizes.detail,
+          ...globalTextStyles.text,
           ...props.style
         },
     })
