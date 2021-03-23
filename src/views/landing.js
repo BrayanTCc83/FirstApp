@@ -8,12 +8,13 @@ import { View, Text, StyleSheet } from 'react-native'
 import ViewContainer from "../components/viewContainer"
 
 //Components import
-import TextView from '../components/text'
+import TextView from '../components/textView'
 import Button from "../components/button"
 import Icon from '../components/icon'
 
 //Provider
 import { useDesignContext } from "../provider/designProvider"
+import { TEXT_DEFINITIONS } from '../../global/definitions'
 
 const Landing = () =>{
   const { height } = useDesignContext()
@@ -27,7 +28,7 @@ const Landing = () =>{
       <ViewContainer >
         <Icon />
         <View style={loadPageStyle.textContainer} >
-          <TextView type={2} margin={50} vmargin={10} >
+          <TextView textSize={TEXT_DEFINITIONS.TEXT_SIZE_4} margin={50} vmargin={10} >
             Comunicate con tus amigos y publica cosas importantes para ti
           </TextView>
         <Button  >Iniciar sesión</Button>

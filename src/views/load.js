@@ -7,7 +7,7 @@ import ViewContainer from "../components/viewContainer"
 
 //Components import
 import { ProgressBar } from 'react-native-paper'
-import TextView from '../components/text'
+import TextView from '../components/textView'
 
 //Provider
 import { useDesignContext } from "../provider/designProvider"

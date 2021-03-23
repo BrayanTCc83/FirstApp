@@ -3,12 +3,13 @@ import React, { Fragment } from 'react'
 
 //React native imports
 import { TouchableHighlight, StyleSheet } from 'react-native'
+import { TEXT_DEFINITIONS } from '../../global/definitions'
 
 //Provider
 import { useDesignContext } from "../provider/designProvider"
 
 //Components import
-import TextView from './text'
+import TextView from './textView'
 
 const Button = (props) => {
     const { mainColor, whiteColor, width } = useDesignContext()
@@ -41,7 +42,7 @@ const Button = (props) => {
                         buttonStyle.buttonType2:
                     buttonStyle.buttonType1
                 } >
-                <TextView type={4} color={
+                <TextView textSize={TEXT_DEFINITIONS.TEXT_SIZE_3} color={
                     props.type===2?
                         "":
                         whiteColor}

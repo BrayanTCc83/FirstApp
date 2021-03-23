@@ -2,7 +2,8 @@
 import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 //Provider
-import { useDesignContext } from "../provider/designProvider"
+import { useDesignContext } from "../../provider/designProvider"
+import { TEXT_DEFINITIONS } from '../../../global/definitions'
 const TextView = (props) => {
     const thin = props.thin? 'normal': 'bold'
     const align = props.align?props.align:'center'
@@ -46,11 +47,11 @@ const TextView = (props) => {
     })
     return(
         <Text style={
-            props.type||props.type===0?
-                props.type===1?textStyles.secondText:
-                props.type===2?textStyles.commonText:
-                props.type===3?textStyles.secondText:
-                props.type===4?textStyles.infoText:
+            props.textSize||props.textSize === TEXT_DEFINITIONS.TEXT_SIZE_1 ? 
+                props.textSize === TEXT_DEFINITIONS.TEXT_SIZE_2 ? textStyles.mainText:
+                props.textSize === TEXT_DEFINITIONS.TEXT_SIZE_3 ? textStyles.commonText:
+                props.textSize === TEXT_DEFINITIONS.TEXT_SIZE_4 ? textStyles.secondText:
+                props.textSize === TEXT_DEFINITIONS.TEXT_SIZE_5 ? textStyles.infoText:
                 textStyles.detailText
             :textStyles.mainText
         } >{props.children}</Text>

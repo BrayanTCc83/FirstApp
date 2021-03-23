@@ -9,11 +9,11 @@ import { StyleSheet, TouchableWithoutFeedback, ScrollView, View } from 'react-na
 import { useDesignContext } from "../provider/designProvider"
 
 //Components
-import TextView from '../components/text'
+import TextView from '../components/textView'
 import Icon from '../components/icon'
 
 //Definitions
-import { ICONS_DEFINITIONS } from "../../global/definitions"
+import { ICONS_DEFINITIONS, TEXT_DEFINITIONS } from "../../global/definitions"
 
 const Dropdown = (props) =>{
     const { mainColor, width } = useDesignContext()
@@ -67,7 +67,7 @@ const Dropdown = (props) =>{
                         icon = { props.icon } 
                         style = { dropdownStyle.icon } 
                     />
-                    <TextView type={4} style={dropdownStyle.headText} >
+                    <TextView textSize={TEXT_DEFINITIONS.TEXT_SIZE_3} style={dropdownStyle.headText} >
                         { props.text }
                     </TextView>
                     <Icon 

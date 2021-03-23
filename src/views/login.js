@@ -9,7 +9,7 @@ import { useDesignContext } from "../provider/designProvider"
 
 //Components import
 import ViewContainer from "../components/viewContainer"
-import TextView from '../components/text'
+import TextView from '../components/textView'
 import Input from '../components/input'
 import Button from '../components/button'
 import Icon from '../components/icon'

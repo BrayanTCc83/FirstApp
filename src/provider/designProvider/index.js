@@ -2,10 +2,10 @@ import React, { createContext, useContext, useMemo, useState } from 'react'
 import { Dimensions } from 'react-native'
 
 //Variables
-import Variables from "../../global/globalStructure.json"
+import Variables from "../../../global/globalStructure.json"
 
 //Definitions
-import { STYLE_DEFINITIONS } from "../../global/definitions"
+import { STYLE_DEFINITIONS } from "../../../global/definitions"
 
 export const DesignContext = createContext()
 
@@ -17,7 +17,7 @@ export const DesignProvider = (props) => {
     const [fontColor, setFontColor] = useState( Variables.vars.fontColors.black )
     const grayFontColor = Variables.vars.fontColors.gray
     const whiteColor = Variables.vars.fontColors.white
-
+    
     const changeTheme = ( newTheme ) => {
         setStrTheme( newTheme )
         setTheme( newTheme === STYLE_DEFINITIONS.LIGHT_MODE ?
@@ -39,7 +39,7 @@ export const DesignProvider = (props) => {
             Variables.vars.colors.greenStyle.secondary :
             Variables.vars.colors.redStyle.secondary
         )
-    }
+    }   
 
     const width = Dimensions.get('window').width
     

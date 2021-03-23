@@ -5,22 +5,23 @@ import React, { Fragment } from 'react'
 import { View, TouchableOpacity, StyleSheet } from 'react-native'
 
 //Provider
-import { useDesignContext } from "../provider/designProvider"
+import { useDesignContext } from "../../provider/designProvider"
 
 //SVG icons
-import BellIcon from "../../assets/icons/bell-regular.svg"
-import GoBackIcon from "../../assets/icons/angle-left-solid.svg"
-import MessageIcon from "../../assets/icons/envelope-regular.svg"
-import DropDownIcon from "../../assets/icons/caret-up-solid.svg"
-import FeatherIcon from "../../assets/icons/feather-alt-solid.svg"
-import ImageIcon from "../../assets/icons/image-regular.svg"
-import UserCircleIcon from "../../assets/icons/user-circle-solid.svg"
-import UserLockIcon from "../../assets/icons/user-lock-solid.svg"
-import ToolsIcon from "../../assets/icons/wrench-solid.svg"
-import ConfigIcon from "../../assets/icons/cog-solid.svg"
+import BellIcon from "../../../assets/icons/bell-regular.svg"
+import GoBackIcon from "../../../assets/icons/angle-left-solid.svg"
+import MessageIcon from "../../../assets/icons/envelope-regular.svg"
+import DropDownIcon from "../../../assets/icons/caret-up-solid.svg"
+import FeatherIcon from "../../../assets/icons/feather-alt-solid.svg"
+import ImageIcon from "../../../assets/icons/image-regular.svg"
+import UserCircleIcon from "../../../assets/icons/user-circle-solid.svg"
+import UserLockIcon from "../../../assets/icons/user-lock-solid.svg"
+import ToolsIcon from "../../../assets/icons/wrench-solid.svg"
+import ConfigIcon from "../../../assets/icons/cog-solid.svg"
+import MessageSendICon from "../../../assets/icons/paper-plane-solid.svg"
 
 //Definitions
-import { ICONS_DEFINITIONS } from "../../global/definitions"
+import { ICONS_DEFINITIONS } from "../../../global/definitions"
 
 //Component definition
 const Icon = (props) => {
@@ -43,6 +44,13 @@ const Icon = (props) => {
             color:mainColor,
             top: 8,
             left: 8
+        },
+        send : {
+            width : 40,
+            height : 40,
+            color:mainColor,
+            top: 15,
+            left: 20
         },
         full : {
             width : 70,
@@ -108,6 +116,9 @@ const Icon = (props) => {
                 break; 
             case ICONS_DEFINITIONS.DROPDOWN_ICON :
                 CHOOSED_ICON = <DropDownIcon style={ iconStyles.middle } />
+                break;
+            case ICONS_DEFINITIONS.SEND_MESSAGE_ICON :
+                CHOOSED_ICON = <MessageSendICon style={ iconStyles.send } />
                 break;
         }
         return CHOOSED_ICON;

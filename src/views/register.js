@@ -3,7 +3,7 @@ import React from 'react'
 
 //Components import
 import ViewContainer from "../components/viewContainer"
-import TextView from '../components/text'
+import TextView from '../components/textView'
 import Input from '../components/input'
 import Button from '../components/button'
 import SwitchButton from '../components/switchButton'

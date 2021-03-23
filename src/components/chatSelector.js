@@ -7,10 +7,10 @@ import { useDesignContext } from "../provider/designProvider"
 
 //Components
 import Icon from "./icon"
-import TextView from './text'
+import TextView from './textView'
 
 //Definitions
-import { ICONS_DEFINITIONS } from "../../global/definitions"
+import { ICONS_DEFINITIONS, TEXT_DEFINITIONS } from "../../global/definitions"
 
 const ChatSelector = (props) => {
     const { width, height, mainColor } = useDesignContext()
@@ -58,14 +58,14 @@ const ChatSelector = (props) => {
           <TouchableWithoutFeedback onPress={()=>alert('abriendo chat')}  >
             <View style={chatSelector.chatViewInfo}>
                 <View style={chatSelector.chatInfo} >
-                <TextView type={4} align='left' >
+                <TextView textSize={TEXT_DEFINITIONS.TEXT_SIZE_5} align='left' >
                     { props.contact ? props.contact : 'Contact' } 
                     { ' - ' }
                     { props.time ? props.time:currentTime }
                 </TextView>
                 </View>
                 <View style={ chatSelector.chatContentPreview } >
-                <TextView type={4} align='left' thin >
+                <TextView textSize={TEXT_DEFINITIONS.TEXT_SIZE_5} align='left' thin >
                     { props.preview ? props.preview : 'Content preview' }
                 </TextView>
                 </View>

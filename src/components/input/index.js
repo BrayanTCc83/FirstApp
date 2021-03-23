@@ -6,10 +6,10 @@ import { useState } from 'react'
 import { TextInput, StyleSheet } from 'react-native'
 
 //Provider
-import { useDesignContext } from "../provider/designProvider"
+import { useDesignContext } from "../../provider/designProvider"
 
 //Components import
-import TextView from './text'
+import TextView from '../textView'
 
 //Component definition
 const Input = (props) => {

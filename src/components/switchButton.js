@@ -4,12 +4,13 @@ import { swi } from 'react-native'
 
 //React native import
 import { TouchableHighlight, StyleSheet, View } from 'react-native'
+import { TEXT_DEFINITIONS } from '../../global/definitions'
 
 //Provider
 import { useDesignContext } from "../provider/designProvider"
 
 //Components import
-import TextView from './text'
+import TextView from './textView'
 
 //Component definition
 const SwitchButton = (props) => {
@@ -77,7 +78,7 @@ const SwitchButton = (props) => {
                         } 
                     />
                 </TouchableHighlight>
-                <TextView style={switchStyles.text}  type={4}>
+                <TextView style={switchStyles.text}  textSize={TEXT_DEFINITIONS.TEXT_SIZE_5}>
                     {props.children?props.children+":":null}
                     {
                         props.labels?

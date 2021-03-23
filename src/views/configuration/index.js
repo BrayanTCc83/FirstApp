@@ -5,20 +5,20 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 
 //Context provider
-import { useDesignContext } from "../provider/designProvider"
+import { useDesignContext } from "../../provider/designProvider"
 
 //Component import
-import SwitchButton from "../components/switchButton"
-import ViewContainer from '../components/viewContainer'
-import Icon from '../components/icon'
-import Dropdown from '../components/dropdown'
-import Button from '../components/button'
+import SwitchButton from "../../components/switchButton"
+import ViewContainer from '../../components/viewContainer'
+import Icon from '../../components/icon'
+import Dropdown from '../../components/dropdown'
+import Button from '../../components/button'
 
 //Definitions
-import { STYLE_DEFINITIONS, ICONS_DEFINITIONS } from "../../global/definitions"
+import { STYLE_DEFINITIONS, ICONS_DEFINITIONS } from "../../../global/definitions"
 
 const Configuration = () =>{
-    const { changeSchemaColor, changeTheme, width } = useDesignContext()
+    const { changeSchemaColor, changeTheme, width } = useDesignContext();
     //Styles definition
     const configStyles = StyleSheet.create({
         user : {

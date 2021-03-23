@@ -3,7 +3,7 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { StyleSheet, View, ScrollView } from 'react-native'
 
 //Context Provider
-import { useDesignContext } from "../provider/designProvider"
+import { useDesignContext } from "../../provider/designProvider"
 
 //Global Styles definition
 const ViewContainer = (props) =>{
