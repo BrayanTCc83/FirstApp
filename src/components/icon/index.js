@@ -24,6 +24,33 @@ import MessageSendICon from "../../../assets/icons/paper-plane-solid.svg"
 import { ICONS_DEFINITIONS } from "../../../global/definitions"
 
 //Component definition
+const ChooseIcon = (props) =>{
+    switch(props.icon){ 
+        case ICONS_DEFINITIONS.BELL_ICON :
+            return ()=><BellIcon style={ props.style} /> 
+        case ICONS_DEFINITIONS.GO_BACK_ICON :
+            return ()=><GoBackIcon style={ props.style} /> 
+        case ICONS_DEFINITIONS.CHAT_MESSAGE_ICON :
+            return ()=><MessageIcon style={ props.style} /> 
+        case ICONS_DEFINITIONS.NEW_POST_ICON :
+            return ()=><FeatherIcon style={ props.style} /> 
+        case ICONS_DEFINITIONS.IMAGE_ICON :
+            return ()=><ImageIcon style={ props.style} /> 
+        case ICONS_DEFINITIONS.USER_ICON :
+            return ()=><UserCircleIcon style={ props.style} /> 
+        case ICONS_DEFINITIONS.PRIVACITY_ICON :
+            return ()=><UserLockIcon style={ props.style} /> 
+        case ICONS_DEFINITIONS.TOOLS_ICON :
+            return ()=><ToolsIcon style={ props.style} /> 
+        case ICONS_DEFINITIONS.CONFIGURATION_ICON :
+            return ()=><ConfigIcon style={ props.style} /> 
+        case ICONS_DEFINITIONS.DROPDOWN_ICON :
+            return ()=><DropDownIcon style={ props.style } />
+        case ICONS_DEFINITIONS.SEND_MESSAGE_ICON :
+            return ()=><MessageSendICon style={ props.style } />
+    }
+    return ()=><View style={ props.style } />
+}
 const Icon = (props) => {
     //Read data from provider
     const { mainColor, secondaryColor, width, height } = useDesignContext()
@@ -84,45 +111,6 @@ const Icon = (props) => {
           left: width/20
         },
     })
-    const ChooseIcon = () =>{
-        let CHOOSED_ICON = <View style={ iconStyles.iconInside } /> ;
-        switch(props.icon){ 
-            case ICONS_DEFINITIONS.BELL_ICON :
-                CHOOSED_ICON = <BellIcon style={ iconStyles.middle } /> 
-                break;
-            case ICONS_DEFINITIONS.GO_BACK_ICON :
-                CHOOSED_ICON = <GoBackIcon style={ iconStyles.middle } />
-                break; 
-            case ICONS_DEFINITIONS.CHAT_MESSAGE_ICON :
-                CHOOSED_ICON = <MessageIcon style={ iconStyles.middle } />
-                break; 
-            case ICONS_DEFINITIONS.NEW_POST_ICON :
-                CHOOSED_ICON = <FeatherIcon style={ iconStyles.middle } />
-                break; 
-            case ICONS_DEFINITIONS.IMAGE_ICON :
-                CHOOSED_ICON = <ImageIcon style={ iconStyles.middle } />
-                break; 
-            case ICONS_DEFINITIONS.USER_ICON :
-                CHOOSED_ICON = <UserCircleIcon style={ iconStyles.full } />
-                break; 
-            case ICONS_DEFINITIONS.PRIVACITY_ICON :
-                CHOOSED_ICON = <UserLockIcon style={ iconStyles.middle } />
-                break; 
-            case ICONS_DEFINITIONS.TOOLS_ICON :
-                CHOOSED_ICON = <ToolsIcon style={ iconStyles.middle } />
-                break; 
-            case ICONS_DEFINITIONS.CONFIGURATION_ICON :
-                CHOOSED_ICON = <ConfigIcon style={ iconStyles.middle } />
-                break; 
-            case ICONS_DEFINITIONS.DROPDOWN_ICON :
-                CHOOSED_ICON = <DropDownIcon style={ iconStyles.middle } />
-                break;
-            case ICONS_DEFINITIONS.SEND_MESSAGE_ICON :
-                CHOOSED_ICON = <MessageSendICon style={ iconStyles.send } />
-                break;
-        }
-        return CHOOSED_ICON;
-    }
     //Return component view
     return(
         <Fragment>
@@ -136,10 +124,20 @@ const Icon = (props) => {
                 {
                     props.onPress?
                         <TouchableOpacity onPress={props.onPress} >
-                            <ChooseIcon/>
+                            <ChooseIcon icon={props.icon}/>
                         </TouchableOpacity>
                         :
-                        <ChooseIcon/>
+                        <ChooseIcon icon={props.icon}
+                            style={
+                                props.icon===ICONS_DEFINITIONS.SEND_MESSAGE_ICON?
+                                    iconStyles.send :
+                                props.icon===ICONS_DEFINITIONS.USER_ICON?
+                                    iconStyles.full:
+                                props.icon!==ICONS_DEFINITIONS.SEND_MESSAGE_ICON && props.icon!==ICONS_DEFINITIONS.USER_ICON?
+                                    iconStyles.middle:
+                                iconStyles.iconInside
+                            }
+                        />
                 }
             </View>
         </Fragment>

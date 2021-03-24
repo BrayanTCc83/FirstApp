@@ -2,7 +2,7 @@
 import React from 'react'
 
 //React native import
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 
 //Provider
 import { useDesignContext } from "../provider/designProvider"

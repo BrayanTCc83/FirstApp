@@ -2,7 +2,7 @@
 import React from 'react'
 
 //React native imports
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 
 //Global View
 import ViewContainer from "../components/viewContainer"

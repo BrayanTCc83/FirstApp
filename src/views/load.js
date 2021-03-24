@@ -1,6 +1,6 @@
 //React dependencies
 import React from 'react'
-import { View, Text, StyleSheet, ProgressBarAndroidBase } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 
 //Global Views
 import ViewContainer from "../components/viewContainer"
