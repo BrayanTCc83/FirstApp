@@ -86,9 +86,15 @@ const SwitchButton = (props) => {
                                 props.labels[1]:
                                 props.labels[0]
                         :
-                            currentValue?
-                                props.values[1]:
-                                props.values[0]
+                            props.values?
+                                currentValue?
+                                    props.values[1]:
+                                    props.values[0]
+                            :
+                                currentValue?
+                                    "Default value 2":
+                                    "Default value 1"
+
                     }
                 </TextView>
             </View>

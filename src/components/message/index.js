@@ -40,7 +40,9 @@ const Message = (props) => {
                 thin='thin' 
                 align='justify'
             >
-                {props.children}
+                {
+                    props.children? props.children : "Message"
+                }
             </TextView>
         </View>
     )

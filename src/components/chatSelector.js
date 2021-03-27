@@ -13,7 +13,7 @@ import TextView from './textView'
 import { ICONS_DEFINITIONS, TEXT_DEFINITIONS } from "../../global/definitions"
 
 const ChatSelector = (props) => {
-    const { width, height, mainColor } = useDesignContext()
+    const { width, mainColor } = useDesignContext()
     const currentTime = new Date().getHours()+6 +' : '+ new Date().getMinutes()
     const chatSelector = StyleSheet.create({
       container : {
@@ -47,12 +47,10 @@ const ChatSelector = (props) => {
             props.userIcon ? 
               <Icon 
                 icon = { ICONS_DEFINITIONS.BELL_ICON } 
-                onPress = { ()=>alert('mostrando imagen') } 
               />
             :
               <Icon 
                 icon = { ICONS_DEFINITIONS.USER_ICON }
-                onPress={ ()=>alert('mostrando imagen') } 
               />
           }
           <TouchableWithoutFeedback onPress={()=>alert('abriendo chat')}  >

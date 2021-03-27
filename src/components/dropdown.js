@@ -64,11 +64,13 @@ const Dropdown = (props) =>{
             <TouchableWithoutFeedback onPress={()=>setExpanded(!expanded)}  >
                 <View style={dropdownStyle.head}>
                     <Icon 
-                        icon = { props.icon } 
+                        icon = { props.icon? props.icon : ICONS_DEFINITIONS.UNDEFINED_ICON } 
                         style = { dropdownStyle.icon } 
                     />
                     <TextView textSize={TEXT_DEFINITIONS.TEXT_SIZE_3} style={dropdownStyle.headText} >
-                        { props.text }
+                        { 
+                            props.text ? props.text : "Dropdown"
+                        }
                     </TextView>
                     <Icon 
                         icon = { ICONS_DEFINITIONS.DROPDOWN_ICON }

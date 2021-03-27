@@ -18,38 +18,60 @@ import UserCircleIcon from "../../../assets/icons/user-circle-solid.svg"
 import UserLockIcon from "../../../assets/icons/user-lock-solid.svg"
 import ToolsIcon from "../../../assets/icons/wrench-solid.svg"
 import ConfigIcon from "../../../assets/icons/cog-solid.svg"
-import MessageSendICon from "../../../assets/icons/paper-plane-solid.svg"
+import MessageSendIcon from "../../../assets/icons/paper-plane-solid.svg"
+import QuestionIcon from "../../../assets/icons/question-solid.svg"
 
 //Definitions
 import { ICONS_DEFINITIONS } from "../../../global/definitions"
 
 //Component definition
 const ChooseIcon = (props) =>{
+    let IconComponent = <View style={ props.style } />
     switch(props.icon){ 
         case ICONS_DEFINITIONS.BELL_ICON :
-            return ()=><BellIcon style={ props.style} /> 
+            IconComponent = <BellIcon style={ props.style} /> 
+            break;
         case ICONS_DEFINITIONS.GO_BACK_ICON :
-            return ()=><GoBackIcon style={ props.style} /> 
+            IconComponent = <GoBackIcon style={ props.style} /> 
+            break;
         case ICONS_DEFINITIONS.CHAT_MESSAGE_ICON :
-            return ()=><MessageIcon style={ props.style} /> 
+            IconComponent = <MessageIcon style={ props.style} /> 
+            break;
         case ICONS_DEFINITIONS.NEW_POST_ICON :
-            return ()=><FeatherIcon style={ props.style} /> 
+            IconComponent = <FeatherIcon style={ props.style} /> 
+            break;
         case ICONS_DEFINITIONS.IMAGE_ICON :
-            return ()=><ImageIcon style={ props.style} /> 
+            IconComponent = <ImageIcon style={ props.style} /> 
+            break;
         case ICONS_DEFINITIONS.USER_ICON :
-            return ()=><UserCircleIcon style={ props.style} /> 
+            IconComponent = <UserCircleIcon style={ props.style} /> 
+            break;
         case ICONS_DEFINITIONS.PRIVACITY_ICON :
-            return ()=><UserLockIcon style={ props.style} /> 
+            IconComponent = <UserLockIcon style={ props.style} /> 
+            break;
         case ICONS_DEFINITIONS.TOOLS_ICON :
-            return ()=><ToolsIcon style={ props.style} /> 
+            IconComponent = <ToolsIcon style={ props.style} /> 
+            break;
         case ICONS_DEFINITIONS.CONFIGURATION_ICON :
-            return ()=><ConfigIcon style={ props.style} /> 
+            IconComponent = <ConfigIcon style={ props.style} /> 
+            break;
         case ICONS_DEFINITIONS.DROPDOWN_ICON :
-            return ()=><DropDownIcon style={ props.style } />
+            IconComponent = <DropDownIcon style={ props.style } />
+            break;
         case ICONS_DEFINITIONS.SEND_MESSAGE_ICON :
-            return ()=><MessageSendICon style={ props.style } />
+            IconComponent = <MessageSendIcon style={ props.style } />
+            break;
+        case ICONS_DEFINITIONS.UNDEFINED_ICON :
+            IconComponent = <QuestionIcon style={ props.style } />
+            break;
     }
-    return ()=><View style={ props.style } />
+    return (
+        <React.Fragment>
+            {
+                IconComponent
+            }
+        </React.Fragment>
+    )
 }
 const Icon = (props) => {
     //Read data from provider

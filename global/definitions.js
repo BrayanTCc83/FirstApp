@@ -30,6 +30,7 @@ const TOOLS_ICON = 'tools';
 const CONFIGURATION_ICON = 'config';
 const DROPDOWN_ICON = 'dropdown';
 const SEND_MESSAGE_ICON = 'send';
+const UNDEFINED_ICON = 'question';
 
 const ICONS_DEFINITIONS = {
     BELL_ICON,
@@ -42,7 +43,8 @@ const ICONS_DEFINITIONS = {
     TOOLS_ICON,
     CONFIGURATION_ICON,
     DROPDOWN_ICON,
-    SEND_MESSAGE_ICON
+    SEND_MESSAGE_ICON,
+    UNDEFINED_ICON
 };
 //Texts definition
 const TEXT_SIZE_1=0;

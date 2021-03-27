@@ -1,9 +1,9 @@
 {
-  "name": "Notas",
-  "displayName": "Notas",
+  "name": "social-network",
+  "displayName": "social-network",
   "expo": {
-    "name": "Notas",
-    "slug": "Notas",
+    "name": "social-network",
+    "slug": "social-network",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"

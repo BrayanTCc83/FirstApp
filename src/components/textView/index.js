@@ -54,7 +54,11 @@ const TextView = (props) => {
                 props.textSize === TEXT_DEFINITIONS.TEXT_SIZE_5 ? textStyles.infoText:
                 textStyles.detailText
             :textStyles.mainText
-        } >{props.children}</Text>
+        } >
+          {
+            props.children?props.children:"Text"
+          }
+        </Text>
     )
 }
 export default TextView

@@ -13,7 +13,7 @@ import TextView from '../components/textView'
 import { useDesignContext } from "../provider/designProvider"
 import Icon from '../components/icon'
 
-const Load = () =>{
+const Load = (props) =>{
     //Read data from context provider
     const { width, height, grayFontColor, fontColor } = useDesignContext()
     //Styles definition
@@ -37,8 +37,8 @@ const Load = () =>{
             <TextView>NOMBRE DE LA APP</TextView>
             <ProgressBar progress={0.5} style={loadPageStyle.load} color={fontColor} >
             </ProgressBar>
-            <TextView type={5} >Brayan Téllez Cruz</TextView>
-            <TextView type={5} >Christian Roberto Gazpar Pérez</TextView>
+            <TextView type={2} >Brayan Téllez Cruz</TextView>
+            <TextView type={2} >Christian Roberto Gazpar Pérez</TextView>
           </View>
         </ViewContainer>
     )

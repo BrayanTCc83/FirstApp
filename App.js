@@ -1,26 +1,22 @@
-//React
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 
-//Navigations
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import React from 'react';
 
-//Providers
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+
 import { DesignProvider } from "./src/provider/designProvider"
 
 //Views
-import Load from "./src/views/load"
-import Landing from "./src/views/landing"
-import Register from "./src/views/register"
-import Login from "./src/views/login"
-import Home from "./src/views/home"
-import Post from "./src/views/post"
-import Configuration from "./src/views/configuration"
-import ChatsSelectorView from "./src/views/chatList"
-import Chat from "./src/views/chat"
-import UserProfile from "./src/views/userProfile"
+import Load from './src/views/load';
+import Chat from './src/views/chat';
+import ChatsSelectorView from './src/views/chatList';
+import Configuration from './src/views/configuration';
+import Home from './src/views/home';
+import Landing from './src/views/landing';
+import Login from './src/views/login';
+import Register from './src/views/register';
+import UserProfile from './src/views/userProfile';
+import Post from './src/views/post';
 
 const Stack = createStackNavigator();
 
@@ -32,7 +28,7 @@ export default function App() {
           screenOptions={{
             headerShown:false
           }}
-          initialRouteName="Home"
+          initialRouteName="Landing"
         >
           <Stack.Screen 
             name="Load"
