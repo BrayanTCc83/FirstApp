@@ -14,11 +14,12 @@ import Input from "../components/input"
 import ChatSelector from '../components/chatSelector'
 
 //Definitions
-import { ICONS_DEFINITIONS } from '../../global/definitions'
+import { ICONS_DEFINITIONS, SCREEN_VIEWS } from '../../global/definitions'
 
-const ChatsSelectorView = () => {
+const ChatsSelectorView = (props) => {
     //Read data from provider
     const { width, height, mainColor } = useDesignContext()
+    console.log(props);
     //Styles definition
     const chatsSelectorViewStyles = StyleSheet.create({
       header : {
@@ -42,16 +43,18 @@ const ChatsSelectorView = () => {
           <View style={chatsSelectorViewStyles.header} >
             <Icon 
               icon = { ICONS_DEFINITIONS.GO_BACK_ICON }
-              onPress = { () => alert('pressed') } 
+              onPress = {
+                () => props.navigation.navigate(SCREEN_VIEWS.HOME_VIEW, { name: 'Jane' })
+              }
               void  
             />
             <Input style={chatsSelectorViewStyles.searchInput} >Buscar</Input>
           </View>
           <ViewContainer scroll style={chatsSelectorViewStyles.chatsContainer} >
-            <ChatSelector />
-            <ChatSelector />
-            <ChatSelector />
-            <ChatSelector />
+            <ChatSelector {...props} />
+            <ChatSelector {...props} />
+            <ChatSelector {...props} />
+            <ChatSelector {...props} />
           </ViewContainer>
         </ViewContainer>
     )

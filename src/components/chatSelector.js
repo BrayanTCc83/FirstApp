@@ -10,7 +10,7 @@ import Icon from "./icon"
 import TextView from './textView'
 
 //Definitions
-import { ICONS_DEFINITIONS, TEXT_DEFINITIONS } from "../../global/definitions"
+import { ICONS_DEFINITIONS, TEXT_DEFINITIONS, SCREEN_VIEWS } from "../../global/definitions"
 
 const ChatSelector = (props) => {
     const { width, mainColor } = useDesignContext()
@@ -53,7 +53,11 @@ const ChatSelector = (props) => {
                 icon = { ICONS_DEFINITIONS.USER_ICON }
               />
           }
-          <TouchableWithoutFeedback onPress={()=>alert('abriendo chat')}  >
+          <TouchableWithoutFeedback 
+              onPress = {
+                () => props.navigation.navigate(SCREEN_VIEWS.CHAT_VIEW, { name: 'Jane' })
+              }
+          >
             <View style={chatSelector.chatViewInfo}>
                 <View style={chatSelector.chatInfo} >
                 <TextView textSize={TEXT_DEFINITIONS.TEXT_SIZE_5} align='left' >

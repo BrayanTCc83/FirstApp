@@ -13,8 +13,9 @@ import TextView from '../components/textView'
 import Input from '../components/input'
 import Button from '../components/button'
 import Icon from '../components/icon'
-const Login = () =>{
+const Login = (props) =>{
   const { height } = useDesignContext()
+  console.log(props);
   const loginStyles = StyleSheet.create({
     container : {
       height: height/1.5,

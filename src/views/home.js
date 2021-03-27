@@ -3,10 +3,11 @@ import ViewContent from "../components/viewContainer"
 import Icon from "../components/icon"
 import TextView from "../components/textView"
 import { StyleSheet, View } from 'react-native'
-import { ICONS_DEFINITIONS } from "../../global/definitions"
+import { ICONS_DEFINITIONS, SCREEN_VIEWS } from "../../global/definitions"
 import { useDesignContext } from '../provider/designProvider'
-const Home = () =>{
+const Home = (props) =>{
   const { width } = useDesignContext()
+  console.log(props);
   const EstiloE = StyleSheet.create({
     header : {
       display:'flex',
@@ -17,7 +18,8 @@ const Home = () =>{
     },
     headerIcons : {
       top: 5,
-      left: 5
+      left: 10,
+      marginRight: width-160
     },
     headerText : {
       flex:1,
@@ -35,9 +37,18 @@ const Home = () =>{
     return (
     <ViewContent>
       <View style = {EstiloE.header} >
-          <Icon style={EstiloE.headerIcons} icon={ICONS_DEFINITIONS.CONFIGURATION_ICON} onPress = {()=>alert('Estamos trabajando')}></Icon>
-          <TextView type={3} style={EstiloE.headertext} >D!Gato</TextView>
-          <Icon style={EstiloE.headerIcons} icon={ICONS_DEFINITIONS.CHAT_MESSAGE_ICON} ></Icon>
+          <Icon 
+            style={EstiloE.headerIcons} icon={ICONS_DEFINITIONS.CONFIGURATION_ICON} 
+            onPress = {
+              () => props.navigation.navigate(SCREEN_VIEWS.CONFIGURATION_VIEW, { name: 'Jane' })
+            }
+          />
+          <Icon 
+            style={EstiloE.headerIcons} icon={ICONS_DEFINITIONS.CHAT_MESSAGE_ICON} 
+            onPress = {
+              () => props.navigation.navigate(SCREEN_VIEWS.CHAT_LIST_VIEW, { name: 'Jane' })
+            }
+          />
       </View>
       <ViewContent scroll style = {EstiloE.post}>
           <Icon icon={ICONS_DEFINITIONS.USER_ICON} ></Icon>

@@ -15,10 +15,11 @@ import Dropdown from '../../components/dropdown'
 import Button from '../../components/button'
 
 //Definitions
-import { STYLE_DEFINITIONS, ICONS_DEFINITIONS } from "../../../global/definitions"
+import { STYLE_DEFINITIONS, ICONS_DEFINITIONS, SCREEN_VIEWS } from "../../../global/definitions"
 
-const Configuration = () =>{
+const Configuration = (props) =>{
     const { changeSchemaColor, changeTheme, width } = useDesignContext();
+    console.log(props);
     //Styles definition
     const configStyles = StyleSheet.create({
         user : {
@@ -37,9 +38,11 @@ const Configuration = () =>{
     return (
         <ViewContainer scroll >
             <Icon 
-                icon = { ICONS_DEFINITIONS.GO_BACK_ICON } 
-                onPress = { () => alert("Hola") }
-                void  
+                icon= { ICONS_DEFINITIONS.GO_BACK_ICON } 
+                onPress = {
+                    () => props.navigation.navigate(SCREEN_VIEWS.HOME_VIEW, { name: 'Jane' })
+                }
+                void
             />
             <Icon 
                 icon = { ICONS_DEFINITIONS.USER_ICON }

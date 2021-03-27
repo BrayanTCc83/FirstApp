@@ -59,9 +59,33 @@ const TEXT_DEFINITIONS = {
     TEXT_SIZE_4,
     TEXT_SIZE_5
 }
+//Screen defintion
+const HOME_VIEW = "Home";
+const CHAT_VIEW = "Chat";
+const CHAT_LIST_VIEW = "ChatList";
+const LANDING_VIEW = "Landing";
+const LOAD_VIEW = "Load";
+const LOGIN_VIEW = "Login";
+const CONFIGURATION_VIEW = "Configuration";
+const POST_VIEW = "Post";
+const REGISTER_VIEW = "Register";
+const USER_PROFILE_VIEW = "User";
+const SCREEN_VIEWS = {
+    HOME_VIEW,
+    CHAT_LIST_VIEW,
+    CHAT_VIEW,
+    LANDING_VIEW,
+    LOAD_VIEW,
+    LOGIN_VIEW,
+    CONFIGURATION_VIEW,
+    POST_VIEW,
+    REGISTER_VIEW,
+    USER_PROFILE_VIEW
+}
 export {
     TEXT_DEFINITIONS,
     STYLE_DEFINITIONS,
     LANG_DEFINITIONS,
-    ICONS_DEFINITIONS
+    ICONS_DEFINITIONS,
+    SCREEN_VIEWS
 };

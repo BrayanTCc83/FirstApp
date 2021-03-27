@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import { ICONS_DEFINITIONS, TEXT_DEFINITIONS } from '../../global/definitions';
+import { ICONS_DEFINITIONS, TEXT_DEFINITIONS, SCREEN_VIEWS } from '../../global/definitions';
 import Icon from '../components/icon';
 import Input from '../components/input';
 import Message from '../components/message';
@@ -9,6 +9,7 @@ import ViewContainer from '../components/viewContainer';
 import { useDesignContext } from '../provider/designProvider';
 const Chat = (props) =>{
   const { height, mainColor, secondaryColor } = useDesignContext()
+  console.log(props);
   const ChatStyles = StyleSheet.create({
     header : {
       height : 80,
@@ -45,14 +46,27 @@ const Chat = (props) =>{
   return (
       <ViewContainer scroll>
         <View style={ChatStyles.header} >
-          <Icon icon={ICONS_DEFINITIONS.GO_BACK_ICON} void style={ChatStyles.icon} />
+          <Icon 
+            icon={ICONS_DEFINITIONS.GO_BACK_ICON} 
+            void 
+            style={ChatStyles.icon} 
+            onPress = {
+              () => props.navigation.navigate(SCREEN_VIEWS.CHAT_LIST_VIEW, { name: 'Jane' })
+            }
+          />
           <TextView 
             style={ChatStyles.text} 
             textSize={TEXT_DEFINITIONS.TEXT_SIZE_5} 
           >
             {props.user?props.user:"Chat N"}
           </TextView>
-          <Icon icon={ICONS_DEFINITIONS.USER_ICON} style={ChatStyles.icon} />
+          <Icon 
+            icon={ICONS_DEFINITIONS.USER_ICON} 
+            style={ChatStyles.icon}
+            onPress = {
+              () => props.navigation.navigate(SCREEN_VIEWS.USER_PROFILE_VIEW, { name: 'Jane' })
+            }
+          />
         </View>
         <ViewContainer style={ChatStyles.chatViewer} scroll >
           <Message>Hola, como estás?</Message>

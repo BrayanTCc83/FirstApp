@@ -17,6 +17,7 @@ const Load = (props) =>{
     //Read data from context provider
     const { width, height, grayFontColor, fontColor } = useDesignContext()
     //Styles definition
+    console.log(props);
     const loadPageStyle = StyleSheet.create({
       textContainer:{
         width : width - width /4,
@@ -35,8 +36,11 @@ const Load = (props) =>{
           <Icon/>
           <View style={loadPageStyle.textContainer} >
             <TextView>NOMBRE DE LA APP</TextView>
-            <ProgressBar progress={0.5} style={loadPageStyle.load} color={fontColor} >
-            </ProgressBar>
+            <ProgressBar 
+              progress={0.5} 
+              style={loadPageStyle.load} 
+              color={fontColor} 
+            />
             <TextView type={2} >Brayan Téllez Cruz</TextView>
             <TextView type={2} >Christian Roberto Gazpar Pérez</TextView>
           </View>

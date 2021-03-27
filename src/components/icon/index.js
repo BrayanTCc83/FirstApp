@@ -28,11 +28,11 @@ import { ICONS_DEFINITIONS } from "../../../global/definitions"
 const ChooseIcon = (props) =>{
     let IconComponent = <View style={ props.style } />
     switch(props.icon){ 
-        case ICONS_DEFINITIONS.BELL_ICON :
-            IconComponent = <BellIcon style={ props.style} /> 
-            break;
         case ICONS_DEFINITIONS.GO_BACK_ICON :
             IconComponent = <GoBackIcon style={ props.style} /> 
+            break;
+        case ICONS_DEFINITIONS.BELL_ICON :
+            IconComponent = <BellIcon style={ props.style} /> 
             break;
         case ICONS_DEFINITIONS.CHAT_MESSAGE_ICON :
             IconComponent = <MessageIcon style={ props.style} /> 
@@ -146,7 +146,17 @@ const Icon = (props) => {
                 {
                     props.onPress?
                         <TouchableOpacity onPress={props.onPress} >
-                            <ChooseIcon icon={props.icon}/>
+                            <ChooseIcon icon={props.icon}
+                            style={
+                                props.icon===ICONS_DEFINITIONS.SEND_MESSAGE_ICON?
+                                    iconStyles.send :
+                                props.icon===ICONS_DEFINITIONS.USER_ICON?
+                                    iconStyles.full :
+                                props.icon!==ICONS_DEFINITIONS.SEND_MESSAGE_ICON && props.icon!==ICONS_DEFINITIONS.USER_ICON?
+                                    iconStyles.middle:
+                                iconStyles.iconInside
+                            }
+                        />
                         </TouchableOpacity>
                         :
                         <ChooseIcon icon={props.icon}
@@ -154,7 +164,7 @@ const Icon = (props) => {
                                 props.icon===ICONS_DEFINITIONS.SEND_MESSAGE_ICON?
                                     iconStyles.send :
                                 props.icon===ICONS_DEFINITIONS.USER_ICON?
-                                    iconStyles.full:
+                                    iconStyles.full :
                                 props.icon!==ICONS_DEFINITIONS.SEND_MESSAGE_ICON && props.icon!==ICONS_DEFINITIONS.USER_ICON?
                                     iconStyles.middle:
                                 iconStyles.iconInside

@@ -16,8 +16,9 @@ import Icon from '../components/icon'
 import { useDesignContext } from "../provider/designProvider"
 import { TEXT_DEFINITIONS } from '../../global/definitions'
 
-const Landing = () =>{
+const Landing = (props) =>{
   const { height } = useDesignContext()
+  console.log(props);
   const loadPageStyle = StyleSheet.create({
     textContainer:{
       top: height/5,
