@@ -70,6 +70,7 @@ const CONFIGURATION_VIEW = "Configuration";
 const POST_VIEW = "Post";
 const REGISTER_VIEW = "Register";
 const USER_PROFILE_VIEW = "User";
+const MULTIMEDIA = "Multimedia";
 const SCREEN_VIEWS = {
     HOME_VIEW,
     CHAT_LIST_VIEW,
@@ -80,7 +81,8 @@ const SCREEN_VIEWS = {
     CONFIGURATION_VIEW,
     POST_VIEW,
     REGISTER_VIEW,
-    USER_PROFILE_VIEW
+    USER_PROFILE_VIEW,
+    MULTIMEDIA
 }
 export {
     TEXT_DEFINITIONS,
