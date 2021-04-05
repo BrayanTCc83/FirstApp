@@ -25,6 +25,7 @@ const DrawTextContent = (style) =>{
 }
 const DrawMultimediaContent = (props) =>{
     const { width } = useDesignContext()
+    const navigation = useNavigation()
     console.log(props)
     const ImageStyle = StyleSheet.create({
         content : {
@@ -35,13 +36,25 @@ const DrawMultimediaContent = (props) =>{
         }
     })
     return (
-        <View style = {ImageStyle.content} >
-            {
-                props.files? props.files.map(
-                    (file, index) => <ImageViewer src={file} key={file+" name is "+index} />
-                ):null
-            }
-        </View>
+        <>
+        {
+            props.files? 
+                <View style = {ImageStyle.content} >
+                {
+                    props.files.map( (file, index) => 
+                        <ImageViewer 
+                            src={file} 
+                            key={file+" name is "+index}
+                            onPress={ 
+                                ()=>navigation.navigate(SCREEN_VIEWS.MULTIMEDIA,{ type:'img', files:props.files, index:index  }) 
+                            } 
+                        />
+                    )
+                }
+                </View>
+            :null
+        }
+        </>
     )
 }
 const Post = ( props ) => {

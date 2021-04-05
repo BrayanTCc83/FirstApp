@@ -26,10 +26,9 @@ const ImageViewer = ( props ) =>{
         }
     })
     const chooseFile = () =>{
-        const file = props.src ? props.src !== 'test' ? {
+        const file = props.src ? props.src !== 'test1' && props.src !=='test' ? {
             uri: props.src
-        } : ImageTest : 
-            props.src === 'test1'?ImageTest : ImageTest2
+        } : props.src === 'test' ? ImageTest2 : ImageTest : ImageTest
         return (
             <>
                 <Image source={file} style= { ImageStyle.src }  />
@@ -41,7 +40,9 @@ const ImageViewer = ( props ) =>{
             <TouchableOpacity 
                 disabled={props.shower}
                 onPress={ 
-                    ()=>navigation.navigate(SCREEN_VIEWS.MULTIMEDIA,{ type:'img', file:props.src?props.src:'' }) 
+                        props.onPress?
+                            props.onPress
+                        :()=>navigation.navigate(SCREEN_VIEWS.MULTIMEDIA,{ type:'img', file:props.src?props.src:'' }) 
                 } 
             >
                 {
