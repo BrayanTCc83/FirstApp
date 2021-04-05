@@ -23,7 +23,7 @@ import QuestionIcon from "../../../assets/icons/question-solid.svg"
 import CameraIcon from "../../../assets/icons/camera-solid.svg"
 
 //Definitions
-import { ICONS_DEFINITIONS } from "../../../global/definitions"
+import { ICONS_DEFINITIONS, STYLE_DEFINITIONS } from "../../../global/definitions"
 
 //Component definition
 const ChooseIcon = (props) =>{
@@ -79,13 +79,14 @@ const ChooseIcon = (props) =>{
 }
 const Icon = (props) => {
     //Read data from provider
-    const { mainColor, secondaryColor, width, height } = useDesignContext()
+    const { mainColor, secondaryColor, width, height, strTheme } = useDesignContext()
     //Styles
     const iconStyles = StyleSheet.create({
         middleOutside : {
             width : 70,
             height : 70,
-            backgroundColor:secondaryColor,
+            backgroundColor: strTheme === STYLE_DEFINITIONS.LIGHT_MODE ||
+                props.icon === ICONS_DEFINITIONS.NEW_POST_ICON ? secondaryColor : 'transparent' ,
             borderRadius : 35,
             borderColor: mainColor,
             borderWidth : 1,
@@ -103,7 +104,7 @@ const Icon = (props) => {
             height : 40,
             color:mainColor,
             top: 15,
-            left: 20
+            left: 15
         },
         full : {
             width : 70,
@@ -129,7 +130,7 @@ const Icon = (props) => {
             ...props.style
         },
         iconInside : {
-          backgroundColor : secondaryColor,
+          backgroundColor : strTheme === STYLE_DEFINITIONS.LIGHT_MODE ? secondaryColor : 'transparent' ,
           width : width/2.5,
           height : width/2.5,
           borderRadius : width/4,
@@ -152,7 +153,7 @@ const Icon = (props) => {
                         <TouchableOpacity onPress={props.onPress} >
                             <ChooseIcon icon={props.icon}
                             style={
-                                props.icon===ICONS_DEFINITIONS.SEND_MESSAGE_ICON?
+                                props.icon===ICONS_DEFINITIONS.SEND_MESSAGE_ICON || props.icon===ICONS_DEFINITIONS.NEW_POST_ICON?
                                     iconStyles.send :
                                 props.icon===ICONS_DEFINITIONS.USER_ICON?
                                     iconStyles.full :

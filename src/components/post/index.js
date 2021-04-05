@@ -26,7 +26,6 @@ const DrawTextContent = (style) =>{
 const DrawMultimediaContent = (props) =>{
     const { width } = useDesignContext()
     const navigation = useNavigation()
-    console.log(props)
     const ImageStyle = StyleSheet.create({
         content : {
             display : 'flex',

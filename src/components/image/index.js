@@ -13,7 +13,6 @@ import { useNavigation } from '@react-navigation/native'
 
 const ImageViewer = ( props ) =>{
     const { width, height } = useDesignContext()
-    console.log('Img', props)
     const navigation = useNavigation()
     const ImageStyle = StyleSheet.create({
         src : {

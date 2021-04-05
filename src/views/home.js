@@ -11,7 +11,6 @@ import { useDesignContext } from '../provider/designProvider'
 
 const Home = (props) =>{
   const { width, height, mainColor } = useDesignContext()
-  console.log(props);
   const EstiloE = StyleSheet.create({
     btnPost:{
       position:"absolute",
@@ -50,6 +49,7 @@ const Home = (props) =>{
     <Icon 
       icon={ICONS_DEFINITIONS.NEW_POST_ICON}
       style={ EstiloE.btnPost }
+      send
       onPress={
         () => props.navigation.navigate(SCREEN_VIEWS.POST_CREATE)
       }

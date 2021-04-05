@@ -1,3 +1,8 @@
+//Files definition
+const CONFIG = 'app-config.txt'
+const FILES_NAMES = {
+    CONFIG
+}
 //Styles definition
 const GREEN_THEME = 'green';
 const RED_THEME = 'red';
@@ -92,5 +97,6 @@ export {
     STYLE_DEFINITIONS,
     LANG_DEFINITIONS,
     ICONS_DEFINITIONS,
-    SCREEN_VIEWS
+    SCREEN_VIEWS,
+    FILES_NAMES
 };

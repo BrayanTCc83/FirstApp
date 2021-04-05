@@ -5,11 +5,11 @@
             "lightTheme":"#FFFFFF",
             "greenStyle":{
                 "main":"#1CCDAA",
-                "secondary":"#CDFFB6"
+                "secondary":"#d4ffee"
             },
             "redStyle":{
                 "main":"#FF6060",
-                "secondary":"#FFA6A6"
+                "secondary":"#ffcccc"
             }
         },
         "fontSizes" : {

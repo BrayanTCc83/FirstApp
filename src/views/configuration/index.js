@@ -16,10 +16,10 @@ import Button from '../../components/button'
 import Header from '../../components/header'
 
 //Definitions
-import { STYLE_DEFINITIONS, ICONS_DEFINITIONS, SCREEN_VIEWS } from "../../../global/definitions"
+import { STYLE_DEFINITIONS, ICONS_DEFINITIONS } from "../../../global/definitions"
 
 const Configuration = (props) =>{
-    const { changeSchemaColor, changeTheme, width } = useDesignContext();
+    const { changeSchemaColor, changeTheme, width, strTheme, strSchema } = useDesignContext();
     //Styles definition
     const configStyles = StyleSheet.create({
         user : {
@@ -53,6 +53,7 @@ const Configuration = (props) =>{
                 text='Configuración' 
             >
                 <SwitchButton 
+                    status= { strSchema === STYLE_DEFINITIONS.RED_THEME }
                     onPress={changeSchemaColor} 
                     labels={["Verde (Aguacate)","Rojo (Jitomate)"]} 
                     value={[
@@ -61,6 +62,7 @@ const Configuration = (props) =>{
                     ]} 
                 />
                 <SwitchButton 
+                    status= { strTheme === STYLE_DEFINITIONS.DARK_MODE }
                     onPress={changeTheme} 
                     labels={["Claro (Colores vivos)","Oscuro (Protege vista)"]} 
                     value={[

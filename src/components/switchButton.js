@@ -17,7 +17,7 @@ const SwitchButton = (props) => {
     //Read data from context provider
     const { width, theme, strTheme, mainColor, secondaryColor } = useDesignContext()
     //State
-    const [currentValue, setCurrentValue] = useState(false)
+    const [currentValue, setCurrentValue] = useState(props.status?props.status:false)
     //Modify value
     const toggleCurrentValue = () => {
         const newCurrentValue=!currentValue 
