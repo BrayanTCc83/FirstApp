@@ -40,7 +40,9 @@ const Input = (props) => {
                 style={inputStyle.input} 
                 placeholder={props.children?props.children:"Input"}
                 onChange={setValue}
-                />
+                multiline= {props.multiline?props.multiline : false}
+                maxLength = { props.maxLength? props.maxLength : 800 }
+            />
         </Fragment>
     )
 }

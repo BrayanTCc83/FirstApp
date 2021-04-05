@@ -8,9 +8,10 @@ import TextView from "../textView"
 
 import { StyleSheet, View } from 'react-native'
 
-import { ICONS_DEFINITIONS } from "../../../global/definitions"
+import { ICONS_DEFINITIONS, SCREEN_VIEWS } from "../../../global/definitions"
 import { useDesignContext } from '../../provider/designProvider'
 import ImageViewer from '../image'
+import { useNavigation } from '@react-navigation/core'
 
 const DrawTextContent = (style) =>{
     return (
@@ -22,8 +23,9 @@ const DrawTextContent = (style) =>{
         </TextView> 
     )
 }
-const DrawMultimediaContent = () =>{
+const DrawMultimediaContent = (props) =>{
     const { width } = useDesignContext()
+    console.log(props)
     const ImageStyle = StyleSheet.create({
         content : {
             display : 'flex',
@@ -34,15 +36,19 @@ const DrawMultimediaContent = () =>{
     })
     return (
         <View style = {ImageStyle.content} >
-            <ImageViewer/>
-            <ImageViewer src='test' />
-            <ImageViewer src='https://lh3.googleusercontent.com/proxy/BDFRKIZhR3iT3dSTwcq4Ww6EKcYfAArpbAO2utQhHdJfjXmIu95s-q5BmcJWExTbZlzRILOU36YLJ66bFgo7oo3XraldZv7ttaBjYjOeROEx5uNp4TgVbGpZNbSDjGBh5MdYRaeWZXf_EXu0_M9UeQ' />
+            {
+                props.files? props.files.map(
+                    (file, index) => <ImageViewer src={file} key={file+" name is "+index} />
+                ):null
+            }
         </View>
     )
 }
 const Post = ( props ) => {
     const [ postUser, setPostUser ] = useState("User")
     const [ postDate, setPostDate ] = useState("3-27-2021,  5:01")
+
+    const navigation = useNavigation()
 
     const { mainColor, width } = useDesignContext()
 
@@ -82,6 +88,9 @@ const Post = ( props ) => {
                 <Icon 
                     icon={ ICONS_DEFINITIONS.USER_ICON } 
                     style={ PostEstile.userIcon }
+                    onPress = {
+                        () => navigation.navigate( SCREEN_VIEWS.POST_VIEW, {id:"key"})
+                    }
                 />
                 <View style = { PostEstile.texts } >
                     <TextView
@@ -106,9 +115,13 @@ const Post = ( props ) => {
                 {
                     DrawTextContent(PostEstile.textContent)
                 }
-                {
-                    DrawMultimediaContent()
-                }
+                <DrawMultimediaContent 
+                    files={[
+                        'test1',
+                        'test',
+                        'https://lh3.googleusercontent.com/proxy/BDFRKIZhR3iT3dSTwcq4Ww6EKcYfAArpbAO2utQhHdJfjXmIu95s-q5BmcJWExTbZlzRILOU36YLJ66bFgo7oo3XraldZv7ttaBjYjOeROEx5uNp4TgVbGpZNbSDjGBh5MdYRaeWZXf_EXu0_M9UeQ'
+                    ]} 
+                />
             </View>
         </View>
     )

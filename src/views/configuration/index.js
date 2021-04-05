@@ -13,13 +13,13 @@ import ViewContainer from '../../components/viewContainer'
 import Icon from '../../components/icon'
 import Dropdown from '../../components/dropdown'
 import Button from '../../components/button'
+import Header from '../../components/header'
 
 //Definitions
 import { STYLE_DEFINITIONS, ICONS_DEFINITIONS, SCREEN_VIEWS } from "../../../global/definitions"
 
 const Configuration = (props) =>{
     const { changeSchemaColor, changeTheme, width } = useDesignContext();
-    console.log(props);
     //Styles definition
     const configStyles = StyleSheet.create({
         user : {
@@ -37,13 +37,7 @@ const Configuration = (props) =>{
     })
     return (
         <ViewContainer scroll >
-            <Icon 
-                icon= { ICONS_DEFINITIONS.GO_BACK_ICON } 
-                onPress = {
-                    () => props.navigation.navigate(SCREEN_VIEWS.HOME_VIEW, { name: 'Jane' })
-                }
-                void
-            />
+            <Header/>
             <Icon 
                 icon = { ICONS_DEFINITIONS.USER_ICON }
                 style = { configStyles.user } 

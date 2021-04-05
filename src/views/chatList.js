@@ -9,7 +9,7 @@ import { useDesignContext } from "../provider/designProvider"
 
 //Components
 import ViewContainer from "../components/viewContainer"
-import Icon from "../components/icon"
+import Header from "../components/header"
 import Input from "../components/input"
 import ChatSelector from '../components/chatSelector'
 
@@ -22,13 +22,6 @@ const ChatsSelectorView = (props) => {
     console.log(props);
     //Styles definition
     const chatsSelectorViewStyles = StyleSheet.create({
-      header : {
-        display :'flex',
-        flexDirection : 'row',
-        borderBottomColor : mainColor,
-        borderBottomWidth : 1,
-        height : 75
-      },
       searchInput : {
         textAlign: 'right',
         maxWidth : width - 140,
@@ -40,16 +33,9 @@ const ChatsSelectorView = (props) => {
     })
     return (
         <ViewContainer>
-          <View style={chatsSelectorViewStyles.header} >
-            <Icon 
-              icon = { ICONS_DEFINITIONS.GO_BACK_ICON }
-              onPress = {
-                () => props.navigation.navigate(SCREEN_VIEWS.HOME_VIEW, { name: 'Jane' })
-              }
-              void  
-            />
+          <Header>
             <Input style={chatsSelectorViewStyles.searchInput} >Buscar</Input>
-          </View>
+          </Header>
           <ViewContainer scroll style={chatsSelectorViewStyles.chatsContainer} >
             <ChatSelector {...props} />
             <ChatSelector {...props} />

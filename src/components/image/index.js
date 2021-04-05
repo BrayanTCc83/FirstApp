@@ -29,7 +29,7 @@ const ImageViewer = ( props ) =>{
         const file = props.src ? props.src !== 'test' ? {
             uri: props.src
         } : ImageTest : 
-            props.src === ''?ImageTest2 : ImageTest2
+            props.src === 'test1'?ImageTest : ImageTest2
         return (
             <>
                 <Image source={file} style= { ImageStyle.src }  />

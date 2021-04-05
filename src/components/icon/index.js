@@ -20,6 +20,7 @@ import ToolsIcon from "../../../assets/icons/wrench-solid.svg"
 import ConfigIcon from "../../../assets/icons/cog-solid.svg"
 import MessageSendIcon from "../../../assets/icons/paper-plane-solid.svg"
 import QuestionIcon from "../../../assets/icons/question-solid.svg"
+import CameraIcon from "../../../assets/icons/camera-solid.svg"
 
 //Definitions
 import { ICONS_DEFINITIONS } from "../../../global/definitions"
@@ -63,6 +64,9 @@ const ChooseIcon = (props) =>{
             break;
         case ICONS_DEFINITIONS.UNDEFINED_ICON :
             IconComponent = <QuestionIcon style={ props.style } />
+            break;
+        case ICONS_DEFINITIONS.CAMERA :
+            IconComponent = <CameraIcon style={ props.style } />
             break;
     }
     return (

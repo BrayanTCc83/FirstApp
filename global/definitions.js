@@ -31,7 +31,7 @@ const CONFIGURATION_ICON = 'config';
 const DROPDOWN_ICON = 'dropdown';
 const SEND_MESSAGE_ICON = 'send';
 const UNDEFINED_ICON = 'question';
-
+const CAMERA = 'camera';
 const ICONS_DEFINITIONS = {
     BELL_ICON,
     GO_BACK_ICON,
@@ -44,7 +44,8 @@ const ICONS_DEFINITIONS = {
     CONFIGURATION_ICON,
     DROPDOWN_ICON,
     SEND_MESSAGE_ICON,
-    UNDEFINED_ICON
+    UNDEFINED_ICON,
+    CAMERA
 };
 //Texts definition
 const TEXT_SIZE_1=0;
@@ -71,6 +72,7 @@ const POST_VIEW = "Post";
 const REGISTER_VIEW = "Register";
 const USER_PROFILE_VIEW = "User";
 const MULTIMEDIA = "Multimedia";
+const POST_CREATE = 'Create post';
 const SCREEN_VIEWS = {
     HOME_VIEW,
     CHAT_LIST_VIEW,
@@ -82,7 +84,8 @@ const SCREEN_VIEWS = {
     POST_VIEW,
     REGISTER_VIEW,
     USER_PROFILE_VIEW,
-    MULTIMEDIA
+    MULTIMEDIA,
+    POST_CREATE
 }
 export {
     TEXT_DEFINITIONS,
