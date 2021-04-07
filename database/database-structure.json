@@ -1,0 +1,40 @@
+{
+    "refs" : [
+        "users",
+        "posts",
+        "chats"
+    ],
+    "users" : {
+        "key" : "string",
+        "name" : "string",
+        "age" : "number",
+        "description" : "string",
+        "profilePhoto" : "string",
+        "email" : "string",
+        "password" : "string"
+    },
+    "posts" : {
+        "key" : "string",
+        "text" : "string",
+        "images" : "Array<string>",
+        "videos" : "Array<string>",
+        "urls" : "Array<string>",
+        "postDate" : "Date( year, month, day )",
+        "hour" : "Date( hour, minutes )",
+        "userRef" : "string"
+    },
+    "chats" : {
+        "key" : "string",
+        "messages" : {
+            "index" : "number",
+            "date" : "Date( year, month, day )",
+            "hour" :"Date( hour, minutes )",
+            "userRef" : "string",
+            "content" : {
+                "text" : "string",
+                "images" : "Array<string>",
+                "videos" : "Array<string>"
+            }
+        }
+    }
+}
