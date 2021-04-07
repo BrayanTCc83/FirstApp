@@ -1,0 +1,222 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button tested with design provider 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#1CCDAA",
+      "borderColor": "#1CCDAA",
+      "borderRadius": 150,
+      "borderWidth": 1,
+      "left": 75,
+      "marginVertical": 10,
+      "maxWidth": 600,
+      "padding": 12,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#ffffff",
+        "fontSize": 23,
+        "fontWeight": "bold",
+        "marginHorizontal": 0,
+        "textAlign": "center",
+      }
+    }
+  >
+    Button
+  </Text>
+</View>
+`;
+
+exports[`Icon component tested with desing provider 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#1CCDAA",
+      "borderRadius": 187.5,
+      "height": 375,
+      "left": 187.5,
+      "top": 222.33333333333334,
+      "width": 375,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "color": "#1CCDAA",
+        "height": 50,
+        "left": 8,
+        "top": 8,
+        "width": 50,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`Input tested with desing provider 1`] = `
+<TextInput
+  allowFontScaling={true}
+  onChange={[Function]}
+  placeholder="Input"
+  rejectResponderTermination={true}
+  style={
+    Object {
+      "backgroundColor": "transparent",
+      "borderColor": "#1CCDAA",
+      "borderRadius": 15,
+      "borderWidth": 1,
+      "fontSize": 20,
+      "fontWeight": "bold",
+      "left": 75,
+      "marginVertical": 10,
+      "maxWidth": 600,
+      "paddingHorizontal": 15,
+      "zIndex": 2,
+    }
+  }
+  underlineColorAndroid="transparent"
+/>
+`;
+
+exports[`Message component tested with desing provider 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#CDFFB6",
+      "borderBottomLeftRadius": 0,
+      "borderColor": "#1CCDAA",
+      "borderRadius": 15,
+      "borderWidth": 2,
+      "marginHorizontal": 15,
+      "marginVertical": 7,
+      "padding": 6,
+      "paddingBottom": 15,
+      "width": 500,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#000000",
+        "fontSize": 20,
+        "fontWeight": "normal",
+        "marginHorizontal": 0,
+        "textAlign": "justify",
+      }
+    }
+  >
+    Message
+  </Text>
+</View>
+`;
+
+exports[`Switch button tested with desing provider 1`] = `
+<View
+  style={
+    Object {
+      "height": 50,
+      "marginHorizontal": 75,
+      "marginVertical": 10,
+      "width": 600,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#CDFFB6",
+        "borderColor": "#1CCDAA",
+        "borderRadius": 50,
+        "borderWidth": 1,
+        "height": 50,
+        "width": 100,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#1CCDAA",
+          "borderRadius": 20,
+          "height": 40,
+          "left": 5,
+          "top": 4,
+          "width": 40,
+        }
+      }
+    />
+  </View>
+  <Text
+    style={
+      Object {
+        "color": "#000000",
+        "fontSize": 20,
+        "fontWeight": "bold",
+        "left": 105,
+        "marginHorizontal": 0,
+        "textAlign": "left",
+        "top": -40,
+        "width": 375,
+      }
+    }
+  >
+    Default value 1
+  </Text>
+</View>
+`;
+
+exports[`Text tested with design provider 1`] = `
+<Text
+  style={
+    Object {
+      "color": "#000000",
+      "fontSize": 30,
+      "fontWeight": "bold",
+      "marginHorizontal": 0,
+      "marginVertical": 50,
+      "textAlign": "center",
+    }
+  }
+>
+  Text
+</Text>
+`;
+
+exports[`View container tested with design provider 1`] = `
+<RCTScrollView
+  scrollEnabled={false}
+  style={
+    Object {
+      "backgroundColor": "#FFFFFF",
+      "height": 1334,
+      "width": 750,
+    }
+  }
+>
+  <View />
+</RCTScrollView>
+`;

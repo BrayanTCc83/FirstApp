@@ -8,6 +8,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-firebase/app": "^11.2.0",
+    "@react-native-firebase/database": "^11.2.0",
     "@react-navigation/native": "^5.9.3",
     "@react-navigation/stack": "^5.14.3",
     "expo": "~40.0.0",

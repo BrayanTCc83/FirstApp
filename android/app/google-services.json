@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "746153846488",
+    "firebase_url": "https://social-network-47a07-default-rtdb.firebaseio.com",
+    "project_id": "social-network-47a07",
+    "storage_bucket": "social-network-47a07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746153846488:android:5e83d76940be13d6f259ad",
+        "android_client_info": {
+          "package_name": "com.notas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "746153846488-40dfsm9a915v7liolt2cqc4jb7m5besc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4SY9IFYVmCfsG6hSZgVHVnZHAATL97kQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "746153846488-40dfsm9a915v7liolt2cqc4jb7m5besc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
