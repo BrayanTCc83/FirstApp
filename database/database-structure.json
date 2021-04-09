@@ -8,9 +8,12 @@
         "key" : "string",
         "name" : "string",
         "age" : "number",
+        "born" : "string",
+        "sex" : "string",
         "description" : "string",
         "profilePhoto" : "string",
         "email" : "string",
+        "hash" : "string",
         "password" : "string"
     },
     "posts" : {
