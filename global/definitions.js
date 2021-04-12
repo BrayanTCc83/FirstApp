@@ -1,7 +1,9 @@
 //Files definition
 const CONFIG = 'app-config.txt'
+const AUTH = 'app-auth.txt'
 const FILES_NAMES = {
-    CONFIG
+    CONFIG,
+    AUTH
 }
 //Styles definition
 const GREEN_THEME = 'green';
@@ -78,6 +80,7 @@ const REGISTER_VIEW = "Register";
 const USER_PROFILE_VIEW = "User";
 const MULTIMEDIA = "Multimedia";
 const POST_CREATE = 'Create post';
+const CAMERA_TAKE = 'Camera';
 const SCREEN_VIEWS = {
     HOME_VIEW,
     CHAT_LIST_VIEW,
@@ -90,7 +93,8 @@ const SCREEN_VIEWS = {
     REGISTER_VIEW,
     USER_PROFILE_VIEW,
     MULTIMEDIA,
-    POST_CREATE
+    POST_CREATE,
+    CAMERA_TAKE
 }
 export {
     TEXT_DEFINITIONS,

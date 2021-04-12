@@ -14,9 +14,10 @@ const MultimediaView = (props) => {
     const { width, height } = useDesignContext()
     const [ index, setIndex ] = useState(props.route && props.route.params ? props.route.params.index : 0)
     const files = props.route && props.route.params ? props.route.params.files : []
-
+    console.log(files)
     const changeIndex=(isIncress)=>{
         let length = files.length
+        console.log(index)
         isIncress === true ? setIndex( index < length-1 ? index + 1 : 0 ) : setIndex( index > 0 ? index - 1 : length-1 )
     }
 

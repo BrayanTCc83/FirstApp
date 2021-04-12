@@ -13,6 +13,7 @@ import { useNavigation } from '@react-navigation/native'
 
 const ImageViewer = ( props ) =>{
     const { width, height } = useDesignContext()
+    console.log(props.src)
     const navigation = useNavigation()
     const ImageStyle = StyleSheet.create({
         src : {
@@ -37,7 +38,7 @@ const ImageViewer = ( props ) =>{
     return (
         <View>
             <TouchableOpacity 
-                disabled={props.shower}
+                disabled={props.shower} 
                 onPress={ 
                         props.onPress?
                             props.onPress

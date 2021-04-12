@@ -1,15 +1,20 @@
-import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { View, Text, StyleSheet, ImageStore } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { ICONS_DEFINITIONS, TEXT_DEFINITIONS, SCREEN_VIEWS } from '../../global/definitions';
 import Icon from '../components/icon';
+import ImageViewer from '../components/image';
 import Input from '../components/input';
 import Header from '../components/header';
 import ViewContainer from '../components/viewContainer';
 import { useDesignContext } from '../provider/designProvider';
+import CameraView from './camera';
+import { launchImageLibrary } from "react-native-image-picker"
 const Post = (props) =>{
   const { mainColor, width, height } = useDesignContext()
   const navigation = useNavigation()
+  const [ isCamera, setCamera ] = useState(false)
+  const [ imagesFiles, setImagesFiles ] = useState("")
   const PostStyles = StyleSheet.create({
     input : {
       borderWidth : 0,
@@ -21,8 +26,27 @@ const Post = (props) =>{
     footer : {
       display:'flex',
       flexDirection:'row'
+    },
+    images : {
+      display : 'flex',
+      flexDirection : 'row',
+      alignContent : 'center',
+      justifyContent : 'space-evenly',
+      flexWrap:'wrap'
     }
   })
+  useEffect(()=>{
+    console.log('Imagenes')
+  }, [ imagesFiles ] )
+  const openGalery = () => {
+    launchImageLibrary({quality:1,mediaType:'photo'},(file)=>{
+      let prevImages = imagesFiles
+      prevImages=prevImages!==""?prevImages+"---":""
+      prevImages+=file.uri
+      console.log(prevImages)
+      setImagesFiles(prevImages)
+    })
+  }
   return (
     <ViewContainer >
       <Header
@@ -33,17 +57,35 @@ const Post = (props) =>{
         ]}
       />
       <Input style={ PostStyles.input } multiline maxLength={150} >Escribe tu publicación</Input>
+      <View style={ PostStyles.images } >
+        {
+          imagesFiles.length!==0? 
+            imagesFiles.split('---').map((file, index)=>
+              <ImageViewer 
+                src={file} 
+                key={index} 
+                onPress={()=>navigation.navigate( SCREEN_VIEWS.MULTIMEDIA, {files : imagesFiles.split('---'), index:index } )} 
+              />
+            )
+          :null
+        }
+      </View>
       <View style={ PostStyles.footer } >
         <Icon 
           icon={ICONS_DEFINITIONS.CAMERA} 
           void 
-          onPress = { ()=>alert('Opening camera') }
+          onPress = { () => navigation.navigate( SCREEN_VIEWS.CAMERA_TAKE ) }
         />
         <Icon 
           icon={ICONS_DEFINITIONS.IMAGE_ICON} 
           void 
-          onPress = { ()=>alert('Opening galery') }
+          onPress = { ()=> openGalery() }
         />
+        {
+          isCamera ? 
+            <CameraView/>
+          :null
+        }
       </View>
     </ViewContainer>
   )
