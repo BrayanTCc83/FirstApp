@@ -1,5 +1,25 @@
-
+import CryptoJS from 'crypto-js'
+import Base64 from 'crypto-js/enc-base64'
 import * as ErrorHandler from "../error"
+const encryptPassword = ( password, hash ) => {
+    let encripted = MD5( password+hash )
+    return encripted
+}
+const validatePassword = ( password, hash ) => {
+    let isPassword = false
+    return isPassword
+}
+const generateHash = () => {
+    let hash = CryptoJS.SHA1(`${randomize( 4 )}`)
+    return hash
+}
+const randomize = ( n ) => {
+    let random = ''
+    for(let i = 1; i <= n; i++ ){
+        random += Math.floor((Math.random()+1)*100)
+    }
+    return random
+}
 var MD5 = function (string) {
 
     function RotateLeft(lValue, iShiftBits) {
@@ -200,32 +220,106 @@ var MD5 = function (string) {
 
     return temp.toLowerCase();
 }
-const encryptPassword = ( password, hash ) => {
-    let encripted = MD5( password+hash )
-    return encripted
+var header = {
+    "alg": "HS256",
+    "typ": "JWT"
 }
-const validatePassword = ( password, hash ) => {
-    let isPassword = false
-    return isPassword
+const generateToken = ( data, secret ) => {
+    var encodedHeader = encodeUTF8( header )
+
+    var encodedData = encodeUTF8( data )
+    
+    var token = encodedHeader + "." + encodedData;
+
+    var signature = encodeSHA256( token, secret )
+
+    var signedToken = token + "." + signature;
+    return signedToken
 }
-const randomize = ( n ) => {
-    let random = ''
-    for(let i = 1; i <= n; i++ ){
-        random += Math.floor((Math.random()+1)*100)
+const encodeUTF8 = ( data ) => {
+    var stringifiedData = CryptoJS.enc.Utf8.parse(JSON.stringify(data));
+    var encodedData = base64url(stringifiedData);
+    return encodedData
+}
+const encodeSHA256 = ( token, secret ) => {
+    var signature = CryptoJS.HmacSHA256(token, secret);
+    signature = base64url(signature);
+    return signature
+}
+const base64url = (source) => {
+    // Encode in classical base64
+    var encodedSource = Base64.stringify(source);
+  
+    // Remove padding equal characters
+    encodedSource = encodedSource.replace(/=+$/, '');
+  
+    // Replace characters according to base64url specifications
+    encodedSource = encodedSource.replace(/\+/g, '-');
+    encodedSource = encodedSource.replace(/\//g, '_');
+  
+    return encodedSource;
+}
+const validateToken = ( token ) => {
+    if( typeof token === 'string' ){
+        const tokenSplit = token.split('.')
+        if( tokenSplit.length === 3 ){
+            if( decodeUTF8( tokenSplit[0] ) && decodeUTF8( tokenSplit[1] ) ){
+                if( JSON.stringify(decodeUTF8( tokenSplit[0] )) === JSON.stringify(header) ){
+                    return true
+                }else{
+                    console.log("The token is invalid")
+                    return false
+                }
+            }else{
+                console.log( "The token data was modified" )
+                return false
+            }
+        }else{
+            console.log("The token isn't complete")
+            return false
+        }
+    }else{
+        console.log("The token isn't valid, the format is wrong")
+        return false
     }
-    return random
 }
-const generateHash = () => {
-    let hash = randomize( 4 )
-    return hash
+const getTokenData = ( token ) =>{
+    const tokenSplit = token.split('.')
+    var decodedData = decodeUTF8( tokenSplit[1] )
+    return decodedData
 }
-const generateToken = () => {
-    let token = "TOKEN"
-    return token
+const getAccess = ( token, secret ) => {
+    if( typeof token === 'string' ){
+        const tokenSplit = token.split('.')
+        if( tokenSplit[2] === encodeSHA256( tokenSplit[0]+"."+tokenSplit[1], secret ) ){
+            return true
+        }else{
+            console.log("The access key is wrong, access denied")
+            return false
+        }
+    }else{
+        console.log("The token isn't valid, access denied")
+        return false
+    }
 }
-const validateTocken = () => {
-    let isToken = false
-    return isToken
+const decodeUTF8 = ( encodedData ) => {
+    var decodedData = decodeBase64url( encodedData )
+    var JSONData = JSON.parse( CryptoJS.enc.Utf8.stringify( decodedData ) )
+    return JSONData
+}
+const decodeBase64url = ( encodedSource ) => {
+    var source = encodedSource
+
+    // Replace characters according to base64url specifications
+    source = source.replace(/\-/g, '+');
+    source = source.replace(/\_/g, '/');
+    
+    // Remove padding equal characters
+    source += '='
+  
+    source = Base64.parse(encodedSource);
+
+    return source;
 }
 const validateDataType = ( value, type ) => {
     const error = "The type used is invalid on "+value
@@ -243,6 +337,13 @@ export {
     validatePassword,
     generateHash,
     generateToken,
-    validateTocken,
-    validateDataType
+    validateToken,
+    getTokenData,
+    getAccess,
+    validateDataType,
+    randomize,
+    decodeBase64url,
+    decodeUTF8,
+    encodeSHA256,
+    encodeUTF8
 }

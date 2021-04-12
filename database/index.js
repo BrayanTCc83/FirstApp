@@ -15,7 +15,6 @@ export default function DatabaseFunctions(ref, key){
     validate(ref)
 
     const [ reference, setReference ] = useState( Database().ref(ref) )
-    const [ accessKey, setKey ] = useState( key ? key : "" )
 
     const changeReference = (ref) => {
         validate(ref)
@@ -30,29 +29,41 @@ export default function DatabaseFunctions(ref, key){
         return Object.assign(DatabaseStructure[ref])
     }
 
-    const [ values , setValues ] = useState( {} )
-    const getValues = () => {
-        reference.once('value').then(
-            (snap) => { 
-                setValues( snap.toJSON() )
-            } 
-        )
-        return values
-    }
-    const [ getValue, setValue ] = useState("")
-    const getOneValue = ( value ) => {
-        reference.once('value').then(
-            (snap) => {
-                setValue( value !== 'key' ? snap.child(value) : snap.key ) 
+    const getValues = ( key, callback ) => {
+        reference.child(key).once('value' , (snap) => {
+                let index = 0
+                snap.forEach(( property )=>{
+                    callback( [property.key], property.val() , index )
+                    index++
+                })
             }
         )
-        return getValue
+    }
+
+    const getOneValue = ( key , propName, callback ) => {
+        return reference.child(key).child(propName).once('value').then(
+            (snap) => {
+                callback(snap.val())
+            }
+        )
+    }
+
+    const findCoincidence = ( propName, value, callback ) => {
+        reference.on('value',  ( snap ) => {
+            let index = snap.numChildren()
+            if(snap.forEach( (child)=> {
+                index--
+                return child.val()[propName] === value
+            } )){
+                callback( Object.keys(snap.val())[index] )
+            }
+        } )
     }
 
     const extractData = ( data ) =>{
         let keys = Object.keys( data )
         for( let index = 0; index < keys.length ; index++ ){
-        SecurityHandler.validateDataType( data[keys[index]], getTypes()[keys[index]] ) 
+            SecurityHandler.validateDataType( data[keys[index]], getTypes()[keys[index]] ) 
         }
         return true
     }
@@ -74,6 +85,7 @@ export default function DatabaseFunctions(ref, key){
         changeReference,
         updateData,
         pushElement,
+        findCoincidence,
         reference
     }
 }

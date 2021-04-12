@@ -1,16 +1,28 @@
-import React from 'react'
+import { PermissionsAndroid } from 'react-native'
 import * as ReactNativeFile from 'react-native-fs'
 
 const useReactNativeFile = ( encode ) => {
-
+    const permissions = async()=>{
+        try {
+            const permissionWrite = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
+            await PermissionsAndroid.request(permissionWrite);
+            Promise.resolve();
+            const permissionRead = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
+            await PermissionsAndroid.request(permissionRead);
+            Promise.resolve();
+        } catch (error) {
+            Promise.reject(error);
+        }
+    }
+    permissions()
     let encodeSystem = encode ? encode : 'utf8'
     let path = ReactNativeFile.DocumentDirectoryPath + '/'
 
-    const writeFile = ( fileName, content ) => {
-        console.log(content)
-        ReactNativeFile.writeFile( (path + fileName ), JSON.stringify(content), encodeSystem )
+    const writeFile = ( fileName, content, callback ) => {
+        return ReactNativeFile.writeFile( (path + fileName ), JSON.stringify(content), encodeSystem )
         .then((success) => {
             console.log('FILE SAVED')
+            callback ? callback (success) : ()=>{}
             return true
         })
         .catch((error) => {
@@ -36,14 +48,15 @@ const useReactNativeFile = ( encode ) => {
     const editPartFile = async ( fileName, prop, value ) => {
         let fileData = JSON.parse( readFile(fileName) )
         fileData[prop] = value
-        await writeFile( fileName, fileData )
+        writeFile( fileName, fileData )
     }
  
     const fileExists = async ( fileName ) => {
-        let result = (await ReactNativeFile.exists( path+fileName ).then((val)=>val)).valueOf()
-        return new Promise( (resolve, reject)=>{
-            result ? resolve( readFile(fileName) ) : reject("File not found")
-        } )
+        return await ReactNativeFile.exists( path+fileName )
+            .then((val)=>
+                readFile(fileName)
+            )
+            .catch((err)=>err)
     }
 
     return {

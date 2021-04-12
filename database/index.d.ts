@@ -21,13 +21,22 @@ export default function DatabaseFunctions ( ref : 'users' | 'posts' | 'chats' ) 
     getValues : () => Object
     /**
      * This method be able to know a specific value
-     * @param {string} value Contains the name of the value that you wanna know
-     * @returns {string | Array<string> | number} Return the value of the data in the database
+     * @param {string} accessKey The key of element that you wanna have a result
+     * @param {string} propName Contains the name of the value that you wanna know
+     * @param {function} callback A function whit the process to do with the obtained value
      */
-    getOneValue : ( value : string ) => string | Array<string> | number
+    getOneValue : ( accessKey : string, propName : string, callback : ( result : string | number | Array<string> ) => void ) => void
+    /**
+     * This method find a coincidence between a local value and one of database, when find it use the callback
+     * to realice a process, if don't found any coincidence, this method won't do anything
+     * @param {string} propName The name of the property to compare
+     * @param {string} valueToFind Contains the value you try to compare with database
+     * @param {function} callback A function whit the process to do with the obtained value
+     */
+    findCoincidence : ( propName : string, valueToFind : string, callback : ( valueObtained : string ) => void ) => void
     /**
      * This method can change the reference for the function, doing possible use other data from database
-     * @param {string} ref 
+     * @param {string} ref A reference of a section od database
      */
     changeReference : ( ref : 'users' | 'posts' | 'chats', key ?: string ) => void
     /**

@@ -17,6 +17,7 @@ export function useDesignContext () : {
     whiteColor : string,
     width : string,
     height : string,
+    isDesignFileRead : boolean,
     changeTheme : (newTheme : string) => void,
     changeSchemaColor : (newSchema : string) => void
 }

@@ -12,6 +12,7 @@ export const DesignContext = createContext()
 
 export const DesignProvider = (props) => {
     const ReactFile = useReactNativeFile()
+    const [ isDesignFileRead, setFileRead ] = useState(false)
 
     const [theme, setTheme] = useState( Variables.vars.colors.lightTheme )
     const [strTheme, setStrTheme] = useState( STYLE_DEFINITIONS.LIGHT_MODE )
@@ -32,8 +33,18 @@ export const DesignProvider = (props) => {
                 await setSecondaryColor( result['secondaryColor'] )
                 await setStrSchema( result['strSchema'] )
                 await setUpdate(false)
+                await setFileRead(true)
             }
-        )
+        ).catch(async()=>{
+            await setStrTheme( STYLE_DEFINITIONS.LIGHT_MODE )
+            await setFontColor( Variables.vars.fontColors.black )
+            await setTheme( Variables.vars.colors.lightTheme )
+            await setMainColor( Variables.vars.colors.greenStyle.main )
+            await setSecondaryColor( Variables.vars.colors.greenStyle.secondary )
+            await setStrSchema( STYLE_DEFINITIONS.GREEN_THEME )
+            await setUpdate(false)
+            await setFileRead(true)
+        })
     }
     const changeTheme = async( newTheme ) => {
         var structure = {
@@ -71,10 +82,8 @@ export const DesignProvider = (props) => {
     }   
 
     useEffect(()=>{
-        if( update ){
-            return getConfigTheme()
-        }
-    })
+        getConfigTheme()
+    }, [ update ])
 
     const grayFontColor = Variables.vars.fontColors.gray
 
@@ -100,9 +109,10 @@ export const DesignProvider = (props) => {
             fontColor,
             grayFontColor,
             whiteColor,
-            strSchema
+            strSchema,
+            isDesignFileRead
         })
-    }, [ theme, width, height, secondaryColor ] );
+    }, [ theme, width, height, secondaryColor, isDesignFileRead ] );
     return <DesignContext.Provider value={value} {...props} />
 };
 
