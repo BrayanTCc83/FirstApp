@@ -17,12 +17,16 @@ const SwitchButton = (props) => {
     //Read data from context provider
     const { width, theme, strTheme, mainColor, secondaryColor } = useDesignContext()
     //State
+    const name = props.name ? props.name : ""
     const [currentValue, setCurrentValue] = useState(props.status?props.status:false)
     //Modify value
     const toggleCurrentValue = () => {
-        const newCurrentValue=!currentValue 
-        setCurrentValue(newCurrentValue)
-        props.onPress?props.onPress(newCurrentValue?props.value[1]:props.value[0]):()=>null
+        const newCurrentValue =! currentValue 
+        setCurrentValue( newCurrentValue )
+        handlerPress( newCurrentValue )
+    }
+    const handlerPress = ( currentValue ) => {
+        props.onPress?props.onPress( currentValue?props.value[1]:props.value[0] , name ):()=>null
     }
     //Styles definition
     const globalSwitch = StyleSheet.create({
@@ -45,8 +49,9 @@ const SwitchButton = (props) => {
         container :{
             width: width - width/5,
             height : 50,
-            marginHorizontal : width/10,
-            marginVertical : 10
+            marginHorizontal : 10,
+            marginVertical : 10,
+            ...props.style
         },
         text: {
             width: width/2,
@@ -72,13 +77,17 @@ const SwitchButton = (props) => {
     return (
         <Fragment>
             <View style={switchStyles.container} >
-                <TouchableHighlight onPress={toggleCurrentValue} style={switchStyles.forVal1} >
+                <TouchableHighlight 
+                    onPress={toggleCurrentValue} 
+                    style={switchStyles.forVal1}
+                    onShowUnderlay = { ()=>handlerPress(currentValue) }
+                >
                     <View style={
                             currentValue?switchStyles.val2:switchStyles.val1
                         } 
                     />
                 </TouchableHighlight>
-                <TextView style={switchStyles.text}  textSize={TEXT_DEFINITIONS.TEXT_SIZE_5}>
+                <TextView style={switchStyles.text}  textSize={TEXT_DEFINITIONS.TEXT_SIZE_4}>
                     {props.children?props.children+":":null}
                     {
                         props.labels?

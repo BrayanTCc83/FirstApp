@@ -14,15 +14,15 @@
         },
         "fontSizes" : {
             "first":30,
-            "second":27,
-            "common":23,
-            "info":20,
-            "detail":13
+            "second":25,
+            "common":20,
+            "info":17,
+            "detail":12
         },
         "fontColors" : {
             "black":"#000000",
             "white":"#ffffff",
-            "gray":"#bbbbbb"
+            "gray":"#aaaaaaaa"
         }
     }
 }

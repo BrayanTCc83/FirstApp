@@ -8,7 +8,7 @@ import TextView from "../textView"
 
 import { StyleSheet, View } from 'react-native'
 
-import { ICONS_DEFINITIONS, SCREEN_VIEWS } from "../../../global/definitions"
+import { ICONS_DEFINITIONS, SCREEN_VIEWS, TEXT_DEFINITIONS } from "../../../global/definitions"
 import { useDesignContext } from '../../provider/designProvider'
 import ImageViewer from '../image'
 import { useNavigation } from '@react-navigation/core'
@@ -16,7 +16,7 @@ import { useNavigation } from '@react-navigation/core'
 const DrawTextContent = (style) =>{
     return (
         <TextView
-            textSize={4} thin 
+            textSize={ TEXT_DEFINITIONS.TEXT_SIZE_4 } thin 
             style={ style }
         >
             Content
@@ -44,8 +44,11 @@ const DrawMultimediaContent = (props) =>{
                         <ImageViewer 
                             src={file} 
                             key={file+" name is "+index}
-                            onPress={ 
-                                ()=>navigation.navigate(SCREEN_VIEWS.MULTIMEDIA,{ type:'img', files:props.files, index:index  }) 
+                            onPress={ ()=>
+                                navigation.navigate(
+                                    SCREEN_VIEWS.MULTIMEDIA,
+                                    { type:'img', files:props.files, index:index  
+                                }) 
                             } 
                         />
                     )
@@ -69,9 +72,9 @@ const Post = ( props ) => {
             borderRadius : 15,
             borderColor : mainColor,
             borderWidth: 2,
-            width : width - 25,
-            margin : 12,
-            maxHeight : 500
+            width : width - 20,
+            margin : 10,
+            maxHeight : 800
         },
         userIcon : {
             top: 5,
@@ -79,7 +82,7 @@ const Post = ( props ) => {
         },
         texts : {
             width : width - 39,
-            height : 70,
+            height : 60,
             marginVertical : 5,
             marginHorizontal : 10
         },
@@ -106,7 +109,7 @@ const Post = ( props ) => {
                 />
                 <View style = { PostEstile.texts } >
                     <TextView
-                        textSize={4} 
+                        textSize={ TEXT_DEFINITIONS.TEXT_SIZE_3 } 
                         align='left'
                     >
                         { 
@@ -114,7 +117,7 @@ const Post = ( props ) => {
                         }
                     </TextView>
                     <TextView
-                        textSize={4} thin 
+                        textSize={ TEXT_DEFINITIONS.TEXT_SIZE_3 } thin 
                         align='left'
                     >
                         {

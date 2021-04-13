@@ -19,7 +19,7 @@ const Home = (props) =>{
       zIndex : 1
     },
     postContainer:{
-      height : height - 105,
+      height : height - 94,
       display : 'flex'
     }
   })

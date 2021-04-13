@@ -22,7 +22,7 @@ const Dropdown = (props) =>{
     const dropdownStyle = StyleSheet.create({
         container : {   
             width : width,
-            minHeight : 84,
+            minHeight : 78,
             borderBottomWidth:1,
             borderTopWidth:1,
             borderColor: mainColor,
@@ -36,7 +36,7 @@ const Dropdown = (props) =>{
         head : {
             display : 'flex',
             flexDirection:'row',
-            height: 85,
+            height: 76,
             borderBottomColor: mainColor,
             borderBottomWidth: 1
         },
@@ -47,7 +47,9 @@ const Dropdown = (props) =>{
         },
         headText : {
             flex:1,
-            padding : 24,
+            margin : 20,
+            paddingLeft : 20,
+            height: 30,
             textAlign:'left'
         },
         contentHidden:{
@@ -55,7 +57,6 @@ const Dropdown = (props) =>{
         },
         content : {
             minHeight: 0,
-            padding: props.children?10:0,
             overflow:'hidden'
         }
     })

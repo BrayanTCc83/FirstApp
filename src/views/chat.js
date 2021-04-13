@@ -26,7 +26,7 @@ const Chat = (props) =>{
       top : 5
     },
     chatViewer : {
-      height : height - 176
+      height : height - 165
     },
     writeMessage:{
       height: 70,
@@ -36,7 +36,7 @@ const Chat = (props) =>{
       flexDirection : 'row'
     },
     iconFeather : {
-      top : -5
+      top : 5
     },
     input : {
       marginRight : 50,

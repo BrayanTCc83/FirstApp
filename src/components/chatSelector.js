@@ -17,7 +17,7 @@ const ChatSelector = (props) => {
     const currentTime = new Date().getHours()+6 +' : '+ new Date().getMinutes()
     const chatSelector = StyleSheet.create({
       container : {
-        height : 90,
+        height : 80,
         paddingVertical : 10,
         display : 'flex',
         alignContent: 'space-around',
@@ -28,7 +28,7 @@ const ChatSelector = (props) => {
       },
       chatViewInfo : {
         top: -5,
-        height : 80,
+        height : 70,
         width : width - 100,
         overflow : 'hidden'
       },
@@ -60,14 +60,14 @@ const ChatSelector = (props) => {
           >
             <View style={chatSelector.chatViewInfo}>
                 <View style={chatSelector.chatInfo} >
-                <TextView textSize={TEXT_DEFINITIONS.TEXT_SIZE_5} align='left' >
+                <TextView textSize={TEXT_DEFINITIONS.TEXT_SIZE_3} align='left' >
                     { props.contact ? props.contact : 'Contact' } 
                     { ' - ' }
                     { props.time ? props.time:currentTime }
                 </TextView>
                 </View>
                 <View style={ chatSelector.chatContentPreview } >
-                <TextView textSize={TEXT_DEFINITIONS.TEXT_SIZE_5} align='left' thin >
+                <TextView textSize={TEXT_DEFINITIONS.TEXT_SIZE_4} align='left' thin >
                     { props.preview ? props.preview : 'Content preview' }
                 </TextView>
                 </View>

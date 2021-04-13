@@ -1,3 +1,4 @@
+import { StyleSheetProperties } from "react-native"
 import Header from "./index"
 /**
  * 
@@ -14,6 +15,8 @@ function Header ( props:{
         align : string,
         centering ?: boolean
     },
+    style : StyleSheetProperties,
+    iconsDesign : StyleSheetProperties,
     notBack : boolean
 } ) : JSX.Element
 export default Header

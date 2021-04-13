@@ -17,14 +17,16 @@ const Header = (props) => {
 
     const HeaderStyle = StyleSheet.create({
         header : {
-          height : 80,
+          height : 70,
           borderBottomColor: mainColor,
           borderBottomWidth:2,
           display:'flex',
-          flexDirection:'row'
+          flexDirection:'row',
+          ...props.style
         },
         icon : {
-          top : 5
+          top : 5,
+          ...props.iconsDesign
         },
         text : {
             flex : 1,
@@ -44,7 +46,7 @@ const Header = (props) => {
 
     let TextElement = props.text?
         <TextView 
-            textSize = { TEXT_DEFINITIONS.TEXT_SIZE_4 } 
+            textSize = { TEXT_DEFINITIONS.TEXT_SIZE_3 } 
             style = { HeaderStyle.text }
             align = { 
                 props.textOptions && props.textOptions.align?

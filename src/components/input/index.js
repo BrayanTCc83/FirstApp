@@ -9,14 +9,17 @@ import { TextInput, StyleSheet } from 'react-native'
 import { useDesignContext } from "../../provider/designProvider"
 
 //Components import
-import TextView from '../textView'
+import { STYLE_DEFINITIONS } from '../../../global/definitions'
 
 //Component definition
 const Input = (props) => {
-    //State
-    const [inputValue,setValue]=useState('')
+    const name = props.name ? props.name : ""
     //Read data from Context Provider
-    const { mainColor, secondaryColkor, width, fontSizes } = useDesignContext()
+    const { mainColor, fontColor, grayFontColor, secondaryColor, width, fontSizes } = useDesignContext()
+
+    const updateValue = (value) => {
+        props.onChange ? props.onChange(value, name) : ()=>{}
+    }
     //Style definition
     const inputStyle = StyleSheet.create({
         input : {
@@ -37,11 +40,16 @@ const Input = (props) => {
     return (
         <Fragment>
             <TextInput 
+                placeholderTextColor = {
+                    grayFontColor
+                }
                 style={inputStyle.input} 
                 placeholder={props.children?props.children:"Input"}
-                onChange={setValue}
+                onChangeText = { updateValue }
+                onBlur = { props.onBlur ? props.onBlur() : ()=>{} }
                 multiline= {props.multiline?props.multiline : false}
                 maxLength = { props.maxLength? props.maxLength : 800 }
+                secureTextEntry = { props.password ? props.password : false }
             />
         </Fragment>
     )

@@ -1,25 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, StyleSheet, TouchableOpacity, Text, ImageStore } from 'react-native'
 import { PermissionsAndroid } from 'react-native'
 import Icon from "../../components/icon"
 import { ICONS_DEFINITIONS, SCREEN_VIEWS } from "../../../global/definitions"
 import { RNCamera, Barcode } from 'react-native-camera';
 import { useNavigation } from '@react-navigation/core';
+import { useDesignContext } from "../../provider/designProvider";
+import Header from "../../components/header";
 import * as ReactNativeFile from 'react-native-fs'
 const PendingView = () => (
   <View
     style={{
-      flex: 1,
-      backgroundColor: 'lightgreen',
-      justifyContent: 'center',
-      alignItems: 'center',
+      position : 'absolute',
+      backgroundColor : 'white'
     }}
   >
     <Text>Waiting</Text>
   </View>
 );
 const CameraView = (props) =>{
+    const { width } = useDesignContext()
     const navigation = useNavigation()
+    const [ whiteBalance, setWhiteBalance ] = useState(RNCamera.Constants.WhiteBalance.auto)
+    const [ isFlash, setFlash ] = useState(RNCamera.Constants.FlashMode.off)
+    const [ cameraDirection, setCameraDirection ] = useState( RNCamera.Constants.Type.back )
     takePicture = async function(camera) {
         const options = { quality: 0.5, base64: true };
         const data = await camera.takePictureAsync(options)
@@ -34,7 +38,6 @@ const CameraView = (props) =>{
         }
         await ReactNativeFile.exists(path)
             .then((val)=>{
-                console.log(val)
                 if( val ){
                     ReactNativeFile.writeFile( path + pictureRoute[pictureRoute.length-1] , data.base64, 'base64' )
                 }else{
@@ -48,8 +51,22 @@ const CameraView = (props) =>{
                 }
             })
             .catch((err)=>console.log('Path exists ',err))
-        console.log(Object.keys(data), pictureRoute[pictureRoute.length-1] );
     };
+    const CommonCameraStyles = StyleSheet.create({
+        icons : {
+            backgroundColor: '#fff6',
+            paddingHorizontal : 1,
+            borderRadius: 20,
+            alignSelf: 'center',
+            top : 0
+        },
+        subHeader : {
+            display : 'flex',
+            left : 140,
+            zIndex : 2,
+            flexDirection : 'row-reverse'
+        }
+    })
     const CameraStyles = StyleSheet.create({
         container: {
           flex: 1,
@@ -62,38 +79,89 @@ const CameraView = (props) =>{
           alignItems: 'center',
           zIndex : 1
         },
-        capture: {
-          flex: 0,
-          backgroundColor: '#fff3',
-          paddingHorizontal : 2.5,
-          borderRadius: 20,
-          alignSelf: 'center',
-          margin: 20,
-          zIndex : 1
-        },
-        goBack : {
+        header : {
             position : 'absolute',
-            top : 10,
-            left : 10,
             zIndex : 2,
-            backgroundColor : '#fff3',
-            borderRadius : 20
+            borderBottomColor : 'transparent'
+        },
+        capture: {
+            flex: 0,
+            alignSelf: 'center',
+            margin: 20,
+            zIndex : 1,
+            ...CommonCameraStyles.icons
+        },
+        icons : {
+            margin : 5,
+            alignSelf : 'center',
+            zIndex : 2,
+            ...CommonCameraStyles.icons
         }
     })
     return (
         <View style = { CameraStyles.container } >
-            <Icon 
-                icon={ ICONS_DEFINITIONS.GO_BACK_ICON } 
-                void 
-                style={ CameraStyles.goBack } 
-                onPress = { () => {
-                    navigation.goBack()
-                } }
-            />
+            <Header 
+                style={CameraStyles.header} 
+                iconsDesign = { CommonCameraStyles.icons } 
+            >
+                <View style={CommonCameraStyles.subHeader} >
+                    <Icon 
+                        icon={ ICONS_DEFINITIONS.FLASH } 
+                        void 
+                        style={ CameraStyles.icons } 
+                        onPress = { () => {
+                            console.log( isFlash )
+                            setFlash( 
+                                isFlash === RNCamera.Constants.FlashMode.on ? 
+                                    RNCamera.Constants.FlashMode.off
+                                    : RNCamera.Constants.FlashMode.on 
+                            )
+                        } }
+                    />
+                    <Icon 
+                        icon={ ICONS_DEFINITIONS.SPIN } 
+                        void 
+                        style={ CameraStyles.icons } 
+                        onPress = { () => {
+                            console.log( cameraDirection )
+                            setCameraDirection( 
+                                cameraDirection === RNCamera.Constants.Type.back ? 
+                                    RNCamera.Constants.Type.front
+                                    : RNCamera.Constants.Type.back
+                            )
+                        } }
+                    />
+                    <Icon 
+                        icon={ ICONS_DEFINITIONS.WHITE_BALANCE } 
+                        void 
+                        style={ CameraStyles.icons } 
+                        onPress = { () => {
+                            console.log( whiteBalance )
+                            setWhiteBalance( 
+                                whiteBalance === RNCamera.Constants.WhiteBalance.auto ? 
+                                    RNCamera.Constants.WhiteBalance.cloudy
+                                : whiteBalance === RNCamera.Constants.WhiteBalance.cloudy ? 
+                                    RNCamera.Constants.WhiteBalance.fluorescent 
+                                : whiteBalance === RNCamera.Constants.WhiteBalance.fluorescent ?
+                                    RNCamera.Constants.WhiteBalance.incandescent
+                                : whiteBalance === RNCamera.Constants.WhiteBalance.incandescent ?
+                                    RNCamera.Constants.WhiteBalance.shadow
+                                : whiteBalance === RNCamera.Constants.WhiteBalance.shadow ? 
+                                    RNCamera.Constants.WhiteBalance.sunny
+                                : RNCamera.Constants.WhiteBalance.auto
+                            )
+                        } }
+                    />
+                </View>
+            </Header>
             <RNCamera
                 style = { CameraStyles.preview }
-                type={RNCamera.Constants.Type.back}
-                flashMode={RNCamera.Constants.FlashMode.on}
+                type={ cameraDirection }
+                flashMode={ isFlash }
+                autoFocus = { RNCamera.Constants.AutoFocus.on }
+                maxZoom = {1}
+                whiteBalance = { whiteBalance }
+                captureAudio
                 androidCameraPermissionOptions={{
                     title: 'Permission to use camera',
                     message: 'We need your permission to use your camera',
@@ -117,6 +185,11 @@ const CameraView = (props) =>{
                             onPress={
                                 () => this.takePicture(camera)
                             } 
+                            void
+                            style={CameraStyles.capture} 
+                        />
+                        <Icon
+                            icon = { ICONS_DEFINITIONS.RECORD }
                             void
                             style={CameraStyles.capture} 
                         />

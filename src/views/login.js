@@ -18,7 +18,7 @@ import Icon from '../components/icon'
 import Database from "../../database"
 import { useHandlerData } from "../hooks/handlers"
 import { SecurityHandler } from '../../functions'
-import { SCREEN_VIEWS } from '../../global/definitions'
+import { SCREEN_VIEWS, STYLE_DEFINITIONS, TEXT_DEFINITIONS } from '../../global/definitions'
 import { useNavigation } from '@react-navigation/native'
 const Login = (props) =>{
   const { height } = useDesignContext()
@@ -55,22 +55,24 @@ const Login = (props) =>{
   const loginStyles = StyleSheet.create({
     container : {
       height: height/1.5,
-      top: height/80
+      top: 40
     }, 
     icon : {
-      top: height/20
+      top: 20
     }
   })
   return (
     <ViewContainer scroll >
       <Icon style={loginStyles.icon} />
       <View style={loginStyles.container} > 
-        <TextView>Inicio de sesión</TextView>
+        <TextView textSize= { TEXT_DEFINITIONS.TEXT_SIZE_2 } >Inicio de sesión</TextView>
         <Input name={keys[7]} onChange = { setData } >Ingresa tu email</Input>
         <Input name={keys[9]} onChange = { setData } password >Contraseña</Input>
         <Button type={2} onPress = { 
           ()=>navigation.navigate( SCREEN_VIEWS.REGISTER_VIEW ) 
-        } >No tengo una cuenta</Button>
+        } >
+          No tengo una cuenta
+        </Button>
         <Button onPress = { loginProcess } >Ingresar</Button>
       </View>
     </ViewContainer>

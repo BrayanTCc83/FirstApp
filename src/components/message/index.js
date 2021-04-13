@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import { TEXT_DEFINITIONS } from '../../../global/definitions'
+import { STYLE_DEFINITIONS, TEXT_DEFINITIONS } from '../../../global/definitions'
 import { useDesignContext } from '../../provider/designProvider'
 import TextView from '../textView'
 
 const Message = (props) => {
-    const { width, mainColor, secondaryColor } = useDesignContext()
+    const { width, mainColor, secondaryColor, strTheme } = useDesignContext()
     const MessageStylesGlobal = StyleSheet.create({
         container : {
             width : width/3*2,
@@ -15,7 +15,7 @@ const Message = (props) => {
             paddingBottom : 15,
             marginHorizontal : 15,
             marginVertical: 7,
-            backgroundColor : secondaryColor
+            backgroundColor : strTheme === STYLE_DEFINITIONS.DARK_MODE ? 'transparent' : secondaryColor
         }
     })
     const MessageStyles = StyleSheet.create({
@@ -36,7 +36,7 @@ const Message = (props) => {
             props.mine?MessageStyles.containeRight:MessageStyles.containerLeft
         } >
             <TextView 
-                textSize={TEXT_DEFINITIONS.TEXT_SIZE_5} 
+                textSize={TEXT_DEFINITIONS.TEXT_SIZE_4}
                 thin='thin' 
                 align='justify'
             >

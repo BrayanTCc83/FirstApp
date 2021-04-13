@@ -3,23 +3,23 @@ import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 //Provider
 import { useDesignContext } from "../../provider/designProvider"
-import { TEXT_DEFINITIONS } from '../../../global/definitions'
+import { TEXT_DEFINITIONS, STYLE_DEFINITIONS } from '../../../global/definitions'
 const TextView = (props) => {
     const thin = props.thin? 'normal': 'bold'
     const align = props.align?props.align:'center'
-    const { fontSizes, fontColor } = useDesignContext()
+    const { fontSizes, fontColor, strTheme, whiteColor } = useDesignContext()
     //Styles definition
     const globalTextStyles = StyleSheet.create({
       text : {
         fontWeight : thin,
         textAlign : align,
-        color: props.color?props.color:fontColor,
+        color: props.color?props.color:strTheme === STYLE_DEFINITIONS.DARK_MODE ? whiteColor : fontColor ,
         marginHorizontal: props.margin?props.margin:0,
       }
     })
     const textStyles= StyleSheet.create({
         mainText : {
-          marginVertical:50,
+          marginVertical:20,
           fontSize : fontSizes.first,
           ...globalTextStyles.text,
           ...props.style
@@ -48,12 +48,12 @@ const TextView = (props) => {
     return(
         <Text style={
             props.textSize||props.textSize === TEXT_DEFINITIONS.TEXT_SIZE_1 ? 
-                props.textSize === TEXT_DEFINITIONS.TEXT_SIZE_2 ? textStyles.mainText:
+                props.textSize === TEXT_DEFINITIONS.TEXT_SIZE_2 ? textStyles.secondText:
                 props.textSize === TEXT_DEFINITIONS.TEXT_SIZE_3 ? textStyles.commonText:
-                props.textSize === TEXT_DEFINITIONS.TEXT_SIZE_4 ? textStyles.secondText:
-                props.textSize === TEXT_DEFINITIONS.TEXT_SIZE_5 ? textStyles.infoText:
-                textStyles.detailText
-            :textStyles.mainText
+                props.textSize === TEXT_DEFINITIONS.TEXT_SIZE_4 ? textStyles.infoText:
+                props.textSize === TEXT_DEFINITIONS.TEXT_SIZE_5 ? textStyles.detailText:
+                textStyles.mainText
+            :textStyles.commonText
         } >
           {
             props.children?props.children:"Text"

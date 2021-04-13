@@ -39,6 +39,10 @@ const DROPDOWN_ICON = 'dropdown';
 const SEND_MESSAGE_ICON = 'send';
 const UNDEFINED_ICON = 'question';
 const CAMERA = 'camera';
+const SPIN = 'spin';
+const FLASH = 'flash';
+const RECORD = 'record';
+const WHITE_BALANCE = 'white_balance';
 const ICONS_DEFINITIONS = {
     BELL_ICON,
     GO_BACK_ICON,
@@ -52,14 +56,18 @@ const ICONS_DEFINITIONS = {
     DROPDOWN_ICON,
     SEND_MESSAGE_ICON,
     UNDEFINED_ICON,
-    CAMERA
+    CAMERA,
+    SPIN,
+    FLASH,
+    RECORD,
+    WHITE_BALANCE
 };
 //Texts definition
-const TEXT_SIZE_1=0;
-const TEXT_SIZE_2=1;
-const TEXT_SIZE_3=2;
-const TEXT_SIZE_4=3;
-const TEXT_SIZE_5=4;
+const TEXT_SIZE_1=1;
+const TEXT_SIZE_2=2;
+const TEXT_SIZE_3=3;
+const TEXT_SIZE_4=4;
+const TEXT_SIZE_5=5;
 const TEXT_DEFINITIONS = {
     TEXT_SIZE_1,
     TEXT_SIZE_2,

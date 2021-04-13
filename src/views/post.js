@@ -13,7 +13,6 @@ import { launchImageLibrary } from "react-native-image-picker"
 const Post = (props) =>{
   const { mainColor, width, height } = useDesignContext()
   const navigation = useNavigation()
-  const [ isCamera, setCamera ] = useState(false)
   const [ imagesFiles, setImagesFiles ] = useState("")
   const PostStyles = StyleSheet.create({
     input : {
@@ -35,15 +34,11 @@ const Post = (props) =>{
       flexWrap:'wrap'
     }
   })
-  useEffect(()=>{
-    console.log('Imagenes')
-  }, [ imagesFiles ] )
   const openGalery = () => {
     launchImageLibrary({quality:1,mediaType:'photo'},(file)=>{
       let prevImages = imagesFiles
       prevImages=prevImages!==""?prevImages+"---":""
       prevImages+=file.uri
-      console.log(prevImages)
       setImagesFiles(prevImages)
     })
   }
@@ -81,11 +76,6 @@ const Post = (props) =>{
           void 
           onPress = { ()=> openGalery() }
         />
-        {
-          isCamera ? 
-            <CameraView/>
-          :null
-        }
       </View>
     </ViewContainer>
   )

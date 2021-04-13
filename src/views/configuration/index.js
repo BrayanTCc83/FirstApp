@@ -17,8 +17,10 @@ import Header from '../../components/header'
 
 //Definitions
 import { STYLE_DEFINITIONS, ICONS_DEFINITIONS } from "../../../global/definitions"
+import { useUserContext } from '../../provider/userProvider'
 
 const Configuration = (props) =>{
+    const { logout } = useUserContext()
     const { changeSchemaColor, changeTheme, width, strTheme, strSchema } = useDesignContext();
     //Styles definition
     const configStyles = StyleSheet.create({
@@ -76,7 +78,7 @@ const Configuration = (props) =>{
                 text='Notificaciones' 
             >
             </Dropdown>
-            <Button type={2} >Cerrar sesión</Button>
+            <Button type={2} onPress={ logout } >Cerrar sesión</Button>
         </ViewContainer>
     )
 };

@@ -21,6 +21,10 @@ import ConfigIcon from "../../../assets/icons/cog-solid.svg"
 import MessageSendIcon from "../../../assets/icons/paper-plane-solid.svg"
 import QuestionIcon from "../../../assets/icons/question-solid.svg"
 import CameraIcon from "../../../assets/icons/camera-solid.svg"
+import BoltIcon from "../../../assets/icons/bolt-solid.svg"
+import SpinIcon from "../../../assets/icons/sync-alt-solid.svg"
+import VideoIcon from "../../../assets/icons/video-solid.svg"
+import AdjustIcon from "../../../assets/icons/adjust-solid.svg"
 
 //Definitions
 import { ICONS_DEFINITIONS, STYLE_DEFINITIONS } from "../../../global/definitions"
@@ -68,6 +72,18 @@ const ChooseIcon = (props) =>{
         case ICONS_DEFINITIONS.CAMERA :
             IconComponent = <CameraIcon style={ props.style } />
             break;
+        case ICONS_DEFINITIONS.FLASH :
+            IconComponent = <BoltIcon style={ props.style } />
+            break;
+        case ICONS_DEFINITIONS.SPIN :
+            IconComponent = <SpinIcon style={ props.style } />
+            break;
+        case ICONS_DEFINITIONS.RECORD :
+            IconComponent = <VideoIcon style={ props.style } />
+            break;
+        case ICONS_DEFINITIONS.WHITE_BALANCE :
+            IconComponent = <AdjustIcon style={ props.style } />
+            break;
     }
     return (
         <React.Fragment>
@@ -83,8 +99,8 @@ const Icon = (props) => {
     //Styles
     const iconStyles = StyleSheet.create({
         middleOutside : {
-            width : 70,
-            height : 70,
+            width : 60,
+            height : 60,
             backgroundColor: strTheme === STYLE_DEFINITIONS.LIGHT_MODE ||
                 props.icon === ICONS_DEFINITIONS.NEW_POST_ICON ? secondaryColor : 'transparent' ,
             borderRadius : 35,
@@ -93,22 +109,22 @@ const Icon = (props) => {
             ...props.style
         },
         middle : {
-            width : 50,
-            height : 50,
+            width : 40,
+            height : 40,
             color:mainColor,
-            top: 8,
-            left: 8
+            top: 9,
+            left: 9
         },
         send : {
             width : 40,
             height : 40,
             color:mainColor,
-            top: 15,
-            left: 15
+            top: 10,
+            left: 10
         },
         full : {
-            width : 70,
-            height : 70,
+            width : 60,
+            height : 60,
             color:mainColor,
             top: -1,
             left: -1,
@@ -124,8 +140,8 @@ const Icon = (props) => {
           ...props.style    
         },
         void : {
-            width : 70,
-            height : 70,
+            width : 60,
+            height : 60,
             backgroundColor : 'transparent',
             ...props.style
         },

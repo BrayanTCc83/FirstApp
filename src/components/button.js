@@ -13,26 +13,25 @@ import TextView from './textView'
 
 const Button = (props) => {
     const { mainColor, whiteColor, width } = useDesignContext()
+    const buttonDefinition = StyleSheet.create({
+        button : {
+            maxWidth: width - width/5 ,
+            borderRadius : width/5,
+            padding: 12,
+            left: width/10,
+            marginVertical: 10,
+            borderColor: mainColor,
+            borderWidth: 1
+        }
+    })
     const buttonStyle = StyleSheet.create({
         buttonType1 : {
             backgroundColor : mainColor,
-            maxWidth: width - width/5 ,
-            borderRadius : width/5,
-            padding: 12,
-            left: width/10,
-            marginVertical: 10,
-            borderColor: mainColor,
-            borderWidth: 1
+            ...buttonDefinition.button
         },
         buttonType2 : {
             backgroundColor : 'transparent',
-            maxWidth: width - width/5 ,
-            borderRadius : width/5,
-            padding: 12,
-            left: width/10,
-            marginVertical: 10,
-            borderColor: mainColor,
-            borderWidth: 1
+            ...buttonDefinition.button
         }
     })
     return (
@@ -44,7 +43,7 @@ const Button = (props) => {
                 } >
                 <TextView textSize={TEXT_DEFINITIONS.TEXT_SIZE_3} color={
                     props.type===2?
-                        "":
+                        mainColor:
                         whiteColor}
                     >
                     {props.children?props.children:'Button'}

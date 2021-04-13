@@ -14,7 +14,7 @@ import { useDesignContext } from "../provider/designProvider"
 import Icon from '../components/icon'
 import { useUserContext } from '../provider/userProvider'
 import { useNavigation } from '@react-navigation/core'
-import { SCREEN_VIEWS } from '../../global/definitions'
+import { SCREEN_VIEWS, TEXT_DEFINITIONS } from '../../global/definitions'
 
 const Load = (props) =>{
     //Read data from context provider
@@ -33,7 +33,7 @@ const Load = (props) =>{
         height: height
       },
       load : {
-        top: -30,
+        top: -10,
         backgroundColor: grayFontColor
       },
       infoText : {
@@ -74,7 +74,7 @@ const Load = (props) =>{
         <ViewContainer>
           <Icon/>
           <View style={loadPageStyle.textContainer} onLayout={ loadData } >
-            <TextView>NOMBRE DE LA APP</TextView>
+            <TextView textSize = { TEXT_DEFINITIONS.TEXT_SIZE_1 } >NOMBRE DE LA APP</TextView>
             <ProgressBar 
               progress={progress}
               style={loadPageStyle.load} 
