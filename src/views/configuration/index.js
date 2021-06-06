@@ -1,5 +1,5 @@
 //React import
-import React from 'react'
+import React, { useState } from 'react'
 
 //React native imports
 import { StyleSheet } from 'react-native'
@@ -18,10 +18,15 @@ import Header from '../../components/header'
 //Definitions
 import { STYLE_DEFINITIONS, ICONS_DEFINITIONS } from "../../../global/definitions"
 import { useUserContext } from '../../provider/userProvider'
+import { launchImageLibrary } from "react-native-image-picker"
+
+import Database, { Storage } from '../../../database'
 
 const Configuration = (props) =>{
-    const { logout } = useUserContext()
-    const { changeSchemaColor, changeTheme, width, strTheme, strSchema } = useDesignContext();
+    const { logout, userData } = useUserContext()
+    const { changeSchemaColor, changeTheme, width, strTheme, strSchema } = useDesignContext()
+    const userDatabase = Database('users', userData.key )
+    const userStorage = Storage('users', userData.key )
     //Styles definition
     const configStyles = StyleSheet.create({
         user : {
@@ -37,6 +42,22 @@ const Configuration = (props) =>{
             borderRadius: width/3
         }
     })
+    const loadPhoto = ( file ) =>{
+      if( file.uri != undefined ){ 
+          userStorage.uploadOnceFile( file.uri, ( fileUri, index, resolve ) => {
+            resolve.then( ( result ) => {
+                if( result === true ){
+                    userDatabase.updateData( {
+                        profilePhoto : fileUri
+                    } )
+                }
+            } )
+          } )
+      }
+    }
+    const changeProfilePhoto = () => {
+        launchImageLibrary({quality:1,mediaType:'photo'}, loadPhoto )
+    }
     return (
         <ViewContainer scroll >
             <Header/>
@@ -44,6 +65,7 @@ const Configuration = (props) =>{
                 icon = { ICONS_DEFINITIONS.USER_ICON }
                 style = { configStyles.user } 
                 styleInside = { configStyles.userInside } 
+                onPress = { changeProfilePhoto }
             />
             <Dropdown 
                 icon= { ICONS_DEFINITIONS.PRIVACITY_ICON } 

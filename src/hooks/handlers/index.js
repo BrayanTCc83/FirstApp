@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import "./index"
 import { SecurityHandler } from "../../../functions"
-const useHandlerData = () => {
-    const [ objectData, setObjectData ] = useState({})
+const useHandlerData = ( initialValue ) => {
+    const [ objectData, setObjectData ] = useState( () => 
+        initialValue ? initialValue : {} 
+    )
     const updateData = ( value, propName ) => {
         let saveData = objectData
         saveData[propName] = value

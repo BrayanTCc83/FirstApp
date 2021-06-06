@@ -6,6 +6,7 @@ function useUserContext () : {
     userData : { [propName : string] : string | number | Array<string> } ,
     isUser : boolean,
     isFileAuthRead : boolean,
+    accessKey : string,
     register : ( newUser : {[propName : string] : string | number | Array<string> } ) => void,
     login : ( user : string, password : string ) => void,
     logout : () => void,

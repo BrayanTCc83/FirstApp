@@ -7,13 +7,13 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { SCREEN_VIEWS } from "../../../global/definitions"
 import ImageTest from "../../../assets/images/test.png"
 import ImageTest2 from "../../../assets/images/test2.png"
+import VideoImage from "../../../assets/images/video-image.png"
 
 import { useDesignContext } from '../../provider/designProvider'
 import { useNavigation } from '@react-navigation/native'
 
 const ImageViewer = ( props ) =>{
     const { width, height } = useDesignContext()
-    console.log(props.src)
     const navigation = useNavigation()
     const ImageStyle = StyleSheet.create({
         src : {
@@ -26,9 +26,9 @@ const ImageViewer = ( props ) =>{
         }
     })
     const chooseFile = () =>{
-        const file = props.src ? props.src !== 'test1' && props.src !=='test' ? {
+        const file = props.src ? props.src !== 'test1' && props.src !=='test' && props.src !== 'video' ? {
             uri: props.src
-        } : props.src === 'test' ? ImageTest2 : ImageTest : ImageTest
+        } : props.src === 'test' ? ImageTest2 : props.src === 'video' ? VideoImage : ImageTest : ImageTest
         return (
             <>
                 <Image source={file} style= { ImageStyle.src }  />
@@ -42,7 +42,7 @@ const ImageViewer = ( props ) =>{
                 onPress={ 
                         props.onPress?
                             props.onPress
-                        :()=>navigation.navigate(SCREEN_VIEWS.MULTIMEDIA,{ type:'img', file:props.src?props.src:'' }) 
+                        :()=>navigation.navigate(SCREEN_VIEWS.MULTIMEDIA,{ type:'img', file:props.src?props.src:'', index : 0 }) 
                 } 
             >
                 {

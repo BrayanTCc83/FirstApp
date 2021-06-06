@@ -50,9 +50,25 @@ export default function DatabaseFunctions ( ref : 'users' | 'posts' | 'chats' ) 
      * @param {Object} data The structured data for create the object
      * @returns {boolean} If the process was sussesful return true, else return false
      */
-    pushElement : ( data : { [propname : string] : string | number | Array<string> } ) => boolean
+    pushElement : ( data : { [propname : string] : string | number | Array<string> }, callback ?: ()=> void ) => boolean
     /**
      * This const contains the reference used
      */
     reference : string
+}
+export function Storage( ref : 'users' | 'posts' | 'chats' , key ?: string ):{
+    uploadOnceFile(
+        fileUri : string,
+        callback : ( fileUri : string, index : number, resolve : Promise<boolean> ) => void,
+        i ?: number,
+        mI ?: number
+    )
+    uploadFiles( 
+        filesUris : Array<string>, 
+        callback ?: ( fileUri : string, index : number, resolve : Promise<boolean> ) => void 
+    ) : void
+    uploadVideos( 
+        videoFile : Array<{ uri : string, name : string }>,
+        callback ?: ( fileUri : string, index : number, resolve : Promise<boolean> ) => void
+    ) : void
 }

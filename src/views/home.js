@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ViewContent from "../components/viewContainer"
 import Icon from "../components/icon"
 import TextView from "../components/textView"
@@ -8,10 +8,16 @@ import Post from '../components/post'
 import Header from '../components/header'
 
 import { useDesignContext } from '../provider/designProvider'
+import { useUserContext } from '../provider/userProvider'
+
+import Database from '../../database'
 
 const Home = (props) =>{
+  const { userData } = useUserContext()
   const { width, height, mainColor } = useDesignContext()
-  const EstiloE = StyleSheet.create({
+  const databaseRef = Database('posts')
+  const [ postsData, setPostsData ] = useState([])
+  const EstiloE = StyleSheet.create({ 
     btnPost:{
       position:"absolute",
       left : width - 85,
@@ -23,13 +29,21 @@ const Home = (props) =>{
       display : 'flex'
     }
   })
+  const loadPostsData = () => {
+    let currentPosts = new Array()
+    databaseRef.getValues( '', ( key, val, index )=>{
+      currentPosts.push( { id : key ,data : val} )
+      setPostsData( currentPosts )
+    } )
+  }
+  useEffect( ()=> loadPostsData() )
   return (
   <ViewContent>
     <Header
       icons={
         [
           {
-            src: ICONS_DEFINITIONS.CONFIGURATION_ICON,
+            src: ICONS_DEFINITIONS.CONFIGURATION_ICON,   
             action:() => props.navigation.navigate(SCREEN_VIEWS.CONFIGURATION_VIEW)
           },
           {
@@ -43,8 +57,11 @@ const Home = (props) =>{
       notBack
     />
     <ViewContent scroll style = {EstiloE.postContainer}>
-      <Post/>
-      <Post/>
+      {
+        postsData.map((postData) => 
+          <Post id={ postData.key } data = { postData.data } />
+        )
+      }
     </ViewContent>
     <Icon 
       icon={ICONS_DEFINITIONS.NEW_POST_ICON}

@@ -11,7 +11,7 @@ import { useDesignContext } from "../provider/designProvider"
 //Components
 import TextView from '../components/textView'
 import Icon from '../components/icon'
-
+ 
 //Definitions
 import { ICONS_DEFINITIONS, TEXT_DEFINITIONS } from "../../global/definitions"
 

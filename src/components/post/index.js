@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Image } from 'react-native'
 
@@ -6,20 +6,22 @@ import Icon from "../icon"
 
 import TextView from "../textView"
 
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native' 
 
 import { ICONS_DEFINITIONS, SCREEN_VIEWS, TEXT_DEFINITIONS } from "../../../global/definitions"
 import { useDesignContext } from '../../provider/designProvider'
 import ImageViewer from '../image'
 import { useNavigation } from '@react-navigation/core'
+import Database from '../../../database'
+import { useHandlerData } from '../../hooks/handlers'
 
-const DrawTextContent = (style) =>{
+const DrawTextContent = (style, text) =>{
     return (
         <TextView
             textSize={ TEXT_DEFINITIONS.TEXT_SIZE_4 } thin 
             style={ style }
         >
-            Content
+            {text}
         </TextView> 
     )
 }
@@ -60,14 +62,36 @@ const DrawMultimediaContent = (props) =>{
     )
 }
 const Post = ( props ) => {
-    const [ postUser, setPostUser ] = useState("User")
-    const [ postDate, setPostDate ] = useState("3-27-2021,  5:01")
+    const [ postData, instanceData, clear ] = useHandlerData( {
+        name : "User name",
+        date : "01-05-2021"
+    } )
+    const postDatabase = Database( 'users' )
+
+    const setPostData = () =>{
+        if( props.data ){
+            instanceData( props.data.postDate, "date" )
+            postDatabase.getValues( props.data.userRef, ( prop, val, index )=>{
+                instanceData( val, prop )
+            } )
+        }
+    }
+
+    useEffect( () => setPostData() )
 
     const navigation = useNavigation()
 
     const { mainColor, width } = useDesignContext()
 
     const PostEstile = StyleSheet.create({
+        profilePhoto : {
+            borderRadius : 30,
+            margin : 5,
+            width : 60,
+            height : 60,
+            borderColor : mainColor,
+            borderWidth: 2,
+        },
         post:{
             borderRadius : 15,
             borderColor : mainColor,
@@ -100,20 +124,25 @@ const Post = ( props ) => {
             style = { PostEstile.post }
         >
             <View style={ PostEstile.header } >
-                <Icon 
-                    icon={ ICONS_DEFINITIONS.USER_ICON } 
-                    style={ PostEstile.userIcon }
-                    onPress = {
-                        () => navigation.navigate( SCREEN_VIEWS.POST_VIEW, {id:"key"})
-                    }
-                />
+                {   
+                    postData.profilePhoto ? 
+                        <Image source = {{ uri : postData.profilePhoto }} style = { PostEstile.profilePhoto } />
+                    :
+                        <Icon 
+                            icon={ ICONS_DEFINITIONS.USER_ICON } 
+                            style={ PostEstile.userIcon }
+                            onPress = {
+                                () => navigation.navigate( SCREEN_VIEWS.POST_VIEW, {id:"key"})
+                            }
+                        />
+                }
                 <View style = { PostEstile.texts } >
                     <TextView
                         textSize={ TEXT_DEFINITIONS.TEXT_SIZE_3 } 
                         align='left'
                     >
                         { 
-                            postUser
+                            postData.name
                         }
                     </TextView>
                     <TextView
@@ -121,22 +150,29 @@ const Post = ( props ) => {
                         align='left'
                     >
                         {
-                            postDate
+                            postData.date
                         }
                     </TextView> 
                 </View>
             </View>
             <View>
                 {
-                    DrawTextContent(PostEstile.textContent)
+                    DrawTextContent(PostEstile.textContent, props.data && props.data.text !== null ? props.data.text : "Content" )
                 }
-                <DrawMultimediaContent 
-                    files={[
-                        'test1',
-                        'test',
-                        'https://lh3.googleusercontent.com/proxy/BDFRKIZhR3iT3dSTwcq4Ww6EKcYfAArpbAO2utQhHdJfjXmIu95s-q5BmcJWExTbZlzRILOU36YLJ66bFgo7oo3XraldZv7ttaBjYjOeROEx5uNp4TgVbGpZNbSDjGBh5MdYRaeWZXf_EXu0_M9UeQ'
-                    ]} 
-                />
+                {
+                    props.data && props.data.images ? 
+                        <DrawMultimediaContent 
+                            files={props.data.images} 
+                        />
+                    :
+                        <DrawMultimediaContent 
+                            files={[
+                                'test1',
+                                'test',
+                                'https://lh3.googleusercontent.com/proxy/BDFRKIZhR3iT3dSTwcq4Ww6EKcYfAArpbAO2utQhHdJfjXmIu95s-q5BmcJWExTbZlzRILOU36YLJ66bFgo7oo3XraldZv7ttaBjYjOeROEx5uNp4TgVbGpZNbSDjGBh5MdYRaeWZXf_EXu0_M9UeQ'
+                            ]} 
+                        />
+                }
             </View>
         </View>
     )

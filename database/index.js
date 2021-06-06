@@ -1,20 +1,26 @@
 import React, { useState } from 'react'
 import DatabaseStructure from "./database-structure.json"
 import Database from '@react-native-firebase/database'
+import FirebaseStorage from '@react-native-firebase/storage'
 import { ErrorHandler, SecurityHandler } from "../functions"
-export default function DatabaseFunctions(ref, key){
-    const refs = DatabaseStructure.refs
+import { FileSystem } from 'react-native-unimodules'
+import * as ReactNativeFile from 'react-native-fs'
+const refs = DatabaseStructure.refs
+const validate = (ref) =>{
     let isRef = false
-    const validate = (ref) =>{
-        for(const refValue of refs ){
-            isRef = ref === refValue 
-            if( isRef ) break
-        } 
-        if (!isRef) throw new Error ("The value of ref is invalid, try use 'posts', 'chats' or 'users'") 
-    }
+    for(const refValue of refs ){
+        isRef = ref === refValue 
+        if( isRef ) break
+    } 
+    if (!isRef) throw new Error ("The value of ref is invalid, try use 'posts', 'chats' or 'users'") 
+}
+export default function DatabaseFunctions(ref, key){
     validate(ref)
 
-    const [ reference, setReference ] = useState( Database().ref(ref) )
+    const [ reference, setReference ] = useState( () => {
+        return key ? Database().ref( ref ).child( key ) : Database().ref(ref)
+    } )
+            
 
     const changeReference = (ref) => {
         validate(ref)
@@ -73,9 +79,15 @@ export default function DatabaseFunctions(ref, key){
         reference.update( newData )
     }
 
-    const pushElement = ( data ) => {
+    const pushElement = ( data, callback ) => {
         extractData( data )
+        callback ? callback() : ()=>{}
         return reference.push( data ).key
+    }
+
+    const getReference = ( child ) => {
+        let newRef = reference.child( child )
+        return newRef
     }
     return {
         getKeys,
@@ -86,6 +98,90 @@ export default function DatabaseFunctions(ref, key){
         updateData,
         pushElement,
         findCoincidence,
+        getReference,
         reference
+    }
+}
+export function Storage( ref, key ){
+    validate(ref)
+    const [ reference, setReference ] = useState( FirebaseStorage().ref( ref ) )
+    const uploadOnceFile = ( fileUri, callback, i, mI ) => {
+        var state = false
+        let fileName = fileUri.split('/')[fileUri.split('/').length - 1]
+        let index = i ? i : 0
+        let maxIndex = mI ? mI : 0
+        reference.child( key ).child( fileName )
+            .putFile( fileUri ).then((snapshot)=>{
+                reference.child( key ).child( fileName ).getDownloadURL().then( 
+                    (val) => {
+                        if( index === maxIndex ) state = true
+                        callback( val, index, new Promise( function( resolve, reject ){
+                            resolve(state)
+                        } ) )
+                    }
+                )
+        })
+    }
+    const uploadFiles = ( filesUris, callback ) => {
+        var state = false
+        if( filesUris.length > 0 ){
+            for( i = 0; i < filesUris.length; i++ ){
+                let index = i
+                let fileUri = filesUris[i]
+                let fileName = fileUri.split('/')[fileUri.split('/').length - 1]
+                reference.child( key ).child( fileName )
+                    .putFile( fileUri ).then((snapshot)=>{
+                        reference.child( key ).child( fileName ).getDownloadURL().then( 
+                            (val) => {
+                                if( index === filesUris.length - 1 ) state = true
+                                callback( val, index, new Promise( function( resolve, reject ){
+                                    resolve(state)
+                                } ) )
+                            }
+                        )
+                })
+            }
+        }else{
+            callback( null, 0, new Promise( function( resolve, reject ){
+                resolve( true )
+            } ) )
+        }
+    }
+    const uploadVideos = ( videosFiles, callback ) =>{
+        if( videosFiles.length > 0 ){
+            var state = false
+            for( i = 0; i < videosFiles.length; i++ ){
+                let index = i
+                let videoUri = videosFiles[i]
+                let videoName = videoUri.split('/')[videoUri.split('/').length - 1]+'.mp4'
+                let newFileUri = FileSystem.cacheDirectory + videoName
+                FileSystem.copyAsync( {
+                    from : videoUri,
+                    to : newFileUri
+                } ).then( ()=>{
+                    reference.child( key ).child( videoName )
+                        .putFile( newFileUri ).then((snapshot)=>{
+                            reference.child( key ).child( videoName ).getDownloadURL().then( 
+                                (val) => {
+                                    if( index === videosFiles.length - 1 ) state = true
+                                    callback( val, index, new Promise( function( resolve, reject ){
+                                        resolve(state)
+                                    } ) )
+                                }
+                            ).catch( e => console.log(e) )
+                        } ).catch( e => console.log(e) )
+                    }
+                ).catch( e => console.log( e ) )
+            }
+        }else{
+            callback( null, 0, new Promise( function( resolve, reject ){
+                resolve( true )
+            } ) )
+        }
+    }
+    return{
+        uploadFiles,
+        uploadVideos,
+        uploadOnceFile
     }
 }

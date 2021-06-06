@@ -22,6 +22,7 @@ const UserProvider = ( props ) => {
                     if ( token !== "" ){
                         if( SecurityHandler.validateToken( token ) ){
                             const accessKey = SecurityHandler.getTokenData( token )[keys[0]]
+                            setUserData( accessKey, "key" )
                             UserDocument.getOneValue( accessKey ,keys[8], (hash)=>{
                                 setUser( SecurityHandler.getAccess( token, hash ) )
                                 UserDocument.getValues( accessKey, ( key, value, index )=>{
@@ -51,6 +52,7 @@ const UserProvider = ( props ) => {
             [keys[7]] : data[keys[7]]
         }
         const token = SecurityHandler.generateToken( forToken, data[keys[8]] )
+        console.log( accessKey )
         const UserFile = {
             'token' : token
         }
