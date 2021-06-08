@@ -36,7 +36,8 @@ export default function DatabaseFunctions(ref, key){
     }
 
     const getValues = ( key, callback ) => {
-        reference.child(key).once('value' , (snap) => {
+        return key ? 
+        reference.child(key).once('value').then( (snap) => {
                 let index = 0
                 snap.forEach(( property )=>{
                     callback( [property.key], property.val() , index )
@@ -44,6 +45,47 @@ export default function DatabaseFunctions(ref, key){
                 })
             }
         )
+        :
+        reference.once('value').then( (snap) => {
+            let index = 0
+            snap.forEach(( property )=>{
+                callback( [property.key], property.val() , index )
+                index++
+            })
+        }
+    )
+    }
+    const getAllValues = ( key, callback ) => {
+        return reference.child(key).on('child_added', (snap) => {
+                let index = 0
+                snap.forEach(( property )=>{
+                    callback( [property.key], property.val() , index )
+                    index++
+                })
+            }
+        )
+    }
+    const awaitForValues = ( key, callback ) => {
+        reference.child( key ).on( 'value', (snap) => {
+            let index = 0
+            console.log( snap )
+            snap.forEach( ( property ) => {
+                callback( [property.key], property.val(), index )
+                index ++
+            } )
+        } )
+    }
+    const pushOnArray = ( key, data, callback ) => {
+        reference.child( key ).once( 'value').then(( snap ) => {
+            reference.child( key ).child( snap.numChildren() + "" ).set( data ).then( () =>{
+                callback()
+            } )
+        } )
+    }
+    const setValue = ( key, data, callback ) => {
+        reference.child( key ).set( data ).then( () => {
+            callback()
+        } )
     }
 
     const getOneValue = ( key , propName, callback ) => {
@@ -99,6 +141,10 @@ export default function DatabaseFunctions(ref, key){
         pushElement,
         findCoincidence,
         getReference,
+        getAllValues,
+        pushOnArray,
+        setValue,
+        awaitForValues,
         reference
     }
 }

@@ -18,7 +18,7 @@ export default function DatabaseFunctions ( ref : 'users' | 'posts' | 'chats' ) 
     /**
      * This method return a whole with the values of element, this object have each value for the element
      */
-    getValues : () => Object
+    getValues : ( key ?: string, callback ?: ( prop : string, val : any, index : number ) => void ) => Promise<boolean>
     /**
      * This method be able to know a specific value
      * @param {string} accessKey The key of element that you wanna have a result

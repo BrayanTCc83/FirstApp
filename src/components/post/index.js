@@ -21,7 +21,7 @@ const DrawTextContent = (style, text) =>{
             textSize={ TEXT_DEFINITIONS.TEXT_SIZE_4 } thin 
             style={ style }
         >
-            {text}
+            {text + "  "}
         </TextView> 
     )
 }
@@ -64,20 +64,19 @@ const DrawMultimediaContent = (props) =>{
 const Post = ( props ) => {
     const [ postData, instanceData, clear ] = useHandlerData( {
         name : "User name",
-        date : "01-05-2021"
+        date : props.data? props.data.date : "01-05-2021"
     } )
+    const [ isUpdate, setUpdate ] = useState( false )
     const postDatabase = Database( 'users' )
 
-    const setPostData = () =>{
-        if( props.data ){
-            instanceData( props.data.postDate, "date" )
-            postDatabase.getValues( props.data.userRef, ( prop, val, index )=>{
-                instanceData( val, prop )
-            } )
-        }
+    const loadData = () => {
+        instanceData( props.data.postDate, "date" )
+        postDatabase.getValues( props.data.userRef, ( prop, val, index )=>{
+            instanceData( val, prop )
+        } )
     }
 
-    useEffect( () => setPostData() )
+    useEffect( () => loadData(), [] )
 
     const navigation = useNavigation()
 
@@ -120,60 +119,67 @@ const Post = ( props ) => {
         }
     })
     return(
+        
         <View
             style = { PostEstile.post }
         >
-            <View style={ PostEstile.header } >
-                {   
-                    postData.profilePhoto ? 
-                        <Image source = {{ uri : postData.profilePhoto }} style = { PostEstile.profilePhoto } />
-                    :
-                        <Icon 
-                            icon={ ICONS_DEFINITIONS.USER_ICON } 
-                            style={ PostEstile.userIcon }
-                            onPress = {
-                                () => navigation.navigate( SCREEN_VIEWS.POST_VIEW, {id:"key"})
-                            }
-                        />
-                }
-                <View style = { PostEstile.texts } >
-                    <TextView
-                        textSize={ TEXT_DEFINITIONS.TEXT_SIZE_3 } 
-                        align='left'
-                    >
-                        { 
-                            postData.name
+            {
+                props.isUpdate === true ?
+                <View>
+                    <View style={ PostEstile.header } >
+                        {   
+                            postData.profilePhoto ? 
+                                <Image source = {{ uri : postData.profilePhoto }} style = { PostEstile.profilePhoto } />
+                            :
+                                <Icon 
+                                    icon={ ICONS_DEFINITIONS.USER_ICON } 
+                                    style={ PostEstile.userIcon }
+                                    onPress = {
+                                        () => navigation.navigate( SCREEN_VIEWS.POST_VIEW, {id:"key"})
+                                    }
+                                />
                         }
-                    </TextView>
-                    <TextView
-                        textSize={ TEXT_DEFINITIONS.TEXT_SIZE_3 } thin 
-                        align='left'
-                    >
+                        <View style = { PostEstile.texts } >
+                            <TextView
+                                textSize={ TEXT_DEFINITIONS.TEXT_SIZE_3 } 
+                                align='left'
+                            >
+                                { 
+                                    postData.name ? postData.name : null
+                                }
+                            </TextView>
+                            <TextView
+                                textSize={ TEXT_DEFINITIONS.TEXT_SIZE_3 } thin 
+                                align='left'
+                            >
+                                {
+                                    postData.date ? postData.date : null
+                                }
+                            </TextView> 
+                        </View>
+                    </View>
+                    <View>
                         {
-                            postData.date
+                            DrawTextContent(PostEstile.textContent, props.data && props.data.text !== " " ? props.data.text : "Content" )
                         }
-                    </TextView> 
+                        {
+                            props.data && props.data.images ? 
+                                <DrawMultimediaContent 
+                                    files={props.data.images} 
+                                />
+                            :
+                                <DrawMultimediaContent 
+                                    files={[
+                                        'test1',
+                                        'test',
+                                        'https://lh3.googleusercontent.com/proxy/BDFRKIZhR3iT3dSTwcq4Ww6EKcYfAArpbAO2utQhHdJfjXmIu95s-q5BmcJWExTbZlzRILOU36YLJ66bFgo7oo3XraldZv7ttaBjYjOeROEx5uNp4TgVbGpZNbSDjGBh5MdYRaeWZXf_EXu0_M9UeQ'
+                                    ]} 
+                                />
+                        }
+                    </View>
                 </View>
-            </View>
-            <View>
-                {
-                    DrawTextContent(PostEstile.textContent, props.data && props.data.text !== null ? props.data.text : "Content" )
-                }
-                {
-                    props.data && props.data.images ? 
-                        <DrawMultimediaContent 
-                            files={props.data.images} 
-                        />
-                    :
-                        <DrawMultimediaContent 
-                            files={[
-                                'test1',
-                                'test',
-                                'https://lh3.googleusercontent.com/proxy/BDFRKIZhR3iT3dSTwcq4Ww6EKcYfAArpbAO2utQhHdJfjXmIu95s-q5BmcJWExTbZlzRILOU36YLJ66bFgo7oo3XraldZv7ttaBjYjOeROEx5uNp4TgVbGpZNbSDjGBh5MdYRaeWZXf_EXu0_M9UeQ'
-                            ]} 
-                        />
-                }
-            </View>
+                : null
+            }
         </View>
     )
 }

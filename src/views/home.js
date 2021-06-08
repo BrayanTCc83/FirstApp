@@ -17,6 +17,8 @@ const Home = (props) =>{
   const { width, height, mainColor } = useDesignContext()
   const databaseRef = Database('posts')
   const [ postsData, setPostsData ] = useState([])
+  const [ isUpdate, setUpdate ] = useState( false )
+  const [ reload, setReload ] = useState( false )
   const EstiloE = StyleSheet.create({ 
     btnPost:{
       position:"absolute",
@@ -32,11 +34,21 @@ const Home = (props) =>{
   const loadPostsData = () => {
     let currentPosts = new Array()
     databaseRef.getValues( '', ( key, val, index )=>{
-      currentPosts.push( { id : key ,data : val} )
-      setPostsData( currentPosts )
+      if( key !== 'key' ){
+        setUpdate( false )
+        currentPosts.push( { id : key ,data : val} )
+        setPostsData( currentPosts )
+        setUpdate( true )
+      }
     } )
+    createTimer()
   }
-  useEffect( ()=> loadPostsData() )
+  const createTimer = () => {
+    setTimeout( () => {
+      setReload( true )
+    }, 1000 )
+  }
+  useEffect( ()=> loadPostsData() , [] )
   return (
   <ViewContent>
     <Header
@@ -58,9 +70,11 @@ const Home = (props) =>{
     />
     <ViewContent scroll style = {EstiloE.postContainer}>
       {
-        postsData.map((postData) => 
-          <Post id={ postData.key } data = { postData.data } />
-        )
+        isUpdate === true ? 
+          postsData.map((postData) => 
+            <Post id={ postData.key } data = { postData.data } isUpdate = { reload } />
+          )
+        :null
       }
     </ViewContent>
     <Icon 

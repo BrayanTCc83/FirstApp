@@ -44,6 +44,15 @@ const Message = (props) => {
                     props.children? props.children : "Message"
                 }
             </TextView>
+            <TextView 
+                textSize={TEXT_DEFINITIONS.TEXT_SIZE_5}
+                thin='thin' 
+                align={ props.mine ? 'right' : 'left' }
+            >
+                {
+                    props.time? props.time : "----"
+                }
+            </TextView>
         </View>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { View, TouchableWithoutFeedback, StyleSheet } from 'react-native'
+import { View, TouchableWithoutFeedback, StyleSheet, Image } from 'react-native'
 
 //Provider
 import { useDesignContext } from "../provider/designProvider"
@@ -14,8 +14,16 @@ import { ICONS_DEFINITIONS, TEXT_DEFINITIONS, SCREEN_VIEWS } from "../../global/
 
 const ChatSelector = (props) => {
     const { width, mainColor } = useDesignContext()
-    const currentTime = new Date().getHours()+6 +' : '+ new Date().getMinutes()
+    const currentTime = props.time !== null ? props.time : "----"
     const chatSelector = StyleSheet.create({
+      profilePhoto : {
+          borderRadius : 30,
+          margin : 5,
+          width : 60,
+          height : 60,
+          borderColor : mainColor,
+          borderWidth: 2,
+      },
       container : {
         height : 80,
         paddingVertical : 10,
@@ -44,9 +52,10 @@ const ChatSelector = (props) => {
     return (
         <View style={chatSelector.container} >
           {
-            props.userIcon ? 
-              <Icon 
-                icon = { ICONS_DEFINITIONS.BELL_ICON } 
+            props.profilePhoto !== null && props.profilePhoto !== undefined ? 
+              <Image
+                style = { chatSelector.profilePhoto }
+                source={ { uri : props.profilePhoto } }
               />
             :
               <Icon 
@@ -55,7 +64,11 @@ const ChatSelector = (props) => {
           }
           <TouchableWithoutFeedback 
               onPress = {
-                () => props.navigation.navigate(SCREEN_VIEWS.CHAT_VIEW, { name: 'Jane' })
+                () => props.navigation.navigate(SCREEN_VIEWS.CHAT_VIEW, { 
+                  name: props.contact ? props.contact : 'Jane' ,
+                  profilePhoto : props.profilePhoto ? props.profilePhoto : null,
+                  key : props.accessKey
+                })
               }
           >
             <View style={chatSelector.chatViewInfo}>
@@ -63,12 +76,12 @@ const ChatSelector = (props) => {
                 <TextView textSize={TEXT_DEFINITIONS.TEXT_SIZE_3} align='left' >
                     { props.contact ? props.contact : 'Contact' } 
                     { ' - ' }
-                    { props.time ? props.time:currentTime }
+                    { currentTime }
                 </TextView>
                 </View>
                 <View style={ chatSelector.chatContentPreview } >
                 <TextView textSize={TEXT_DEFINITIONS.TEXT_SIZE_4} align='left' thin >
-                    { props.preview ? props.preview : 'Content preview' }
+                    { props.preview !== null ? props.preview : 'Ningún mensaje existente' }
                 </TextView>
                 </View>
             </View>

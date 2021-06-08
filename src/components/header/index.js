@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Image } from 'react-native'
 
 import { ICONS_DEFINITIONS, TEXT_DEFINITIONS, } from "../../../global/definitions"
 
@@ -12,10 +12,16 @@ import TextView from '../textView'
 
 const Header = (props) => {
     const { mainColor } = useDesignContext()
-
     const navigation = useNavigation()
-
     const HeaderStyle = StyleSheet.create({
+        profilePhoto : {
+            borderRadius : 30,
+            margin : 5,
+            width : 60,
+            height : 60,
+            borderColor : mainColor,
+            borderWidth: 2,
+        },
         header : {
           height : 70,
           borderBottomColor: mainColor,
@@ -36,6 +42,12 @@ const Header = (props) => {
 
     let ElementsArray = props.icons? new Array(
     props.icons.map( (item, index) => 
+        props.profilePhoto && props.profilePhoto !== null && props.profilePhoto !== undefined ? 
+            <Image
+                style = { HeaderStyle.profilePhoto }
+                source={ { uri : props.profilePhoto } }
+            />
+        :
         <Icon 
             icon = { item.src } 
             onPress={ item.action? item.action : ()=>null } 
