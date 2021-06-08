@@ -20,8 +20,11 @@ La aplicación tiene integradas funciones como son:
 ## Descarga y testeo
 Descarga el zip del archivo o bien clona el proyecto usando git:
 > git clone https://github.com/BrayanTCc83/FirstApp.git
+
 Una vez descargado el proyecto se deben instalar las dependencias, para ello usa el comando(deberás tener npm y node instalado):
 > npm install
+
 Después de ello ya es posible trabajar con la aplicación, tanto con un emulador o con un dispositivo android conectado, para ello abre el AVD o conecta tu celular y después ejecuta el comando:
 > npm run android
+
 De esta forma ya estará todo configurado, finalmente prueba la aplicación, crea una cuenta o inicia sesión y luego podrás usar la app y ver los conenidos publicados por otras personas o compartir la mensajería.
